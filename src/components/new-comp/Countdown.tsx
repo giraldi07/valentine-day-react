@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import type { CountdownProps } from '../types';
+import type { CountdownProps } from '../../types/index';
 
 const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
   const [timeLeft, setTimeLeft] = useState({
@@ -27,21 +27,20 @@ const Countdown: React.FC<CountdownProps> = ({ targetDate }) => {
   }, [targetDate]);
 
   const TimeCard = ({ value, label }: { value: number; label: string }) => (
-    <div className="flex flex-col items-center">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-        className="bg-white shadow-lg rounded-xl p-4 w-[80px] sm:w-[100px] md:w-[120px] aspect-square flex flex-col items-center justify-center"
-      >
-        <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-pink-600">
-          {value}
-        </span>
-        <span className="text-sm text-pink-400 mt-1">
-          {label}
-        </span>
-      </motion.div>
-    </div>
+    <motion.div
+      key={`${label}-${value}`} // Key unik untuk setiap TimeCard
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      className="flex flex-col items-center bg-white shadow-lg rounded-xl p-4 w-[80px] sm:w-[100px] md:w-[120px] aspect-square"
+    >
+      <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-pink-600">
+        {value}
+      </span>
+      <span className="text-sm text-pink-400 mt-1">
+        {label}
+      </span>
+    </motion.div>
   );
 
   return (

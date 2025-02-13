@@ -16,7 +16,12 @@ const CountdownPage: React.FC = () => {
   const targetDate = new Date(year, month - 1, day);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-100 to-red-50 p-4 sm:p-6 md:p-8 flex flex-col">
+    <motion.div
+      initial={{ opacity: 0 }} // Animasi masuk
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      className="min-h-screen bg-gradient-to-br from-pink-100 to-red-50 p-4 sm:p-6 md:p-8 flex flex-col"
+    >
       <div className="max-w-5xl mx-auto w-full flex-grow flex flex-col items-center justify-center py-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -36,14 +41,9 @@ const CountdownPage: React.FC = () => {
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="w-full mb-12"
-        >
+        <div className="w-full mb-12">
           <Countdown targetDate={targetDate} />
-        </motion.div>
+        </div>
 
         <motion.p
           initial={{ opacity: 0 }}
@@ -54,7 +54,7 @@ const CountdownPage: React.FC = () => {
           Every second with you is a treasure ❤️
         </motion.p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

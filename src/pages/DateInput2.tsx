@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion'; // Tambahkan AnimatePresence
 import Numpad from '../components/new-comp/Numpad';
 import HeartBar from '../components/new-comp/HeartBar';
 import SubmitButton from '../components/new-comp/SubmitButton';
@@ -14,6 +14,7 @@ const DateInput2: React.FC = () => {
   const [fillPercentage, setFillPercentage] = useState(0);
   const [isShaking, setIsShaking] = useState(false);
   const [showHearts, setShowHearts] = useState(false);
+  const [isExiting, setIsExiting] = useState(false); // State untuk animasi keluar
   const navigate = useNavigate();
 
   const handleInputChange = (value: string) => {
@@ -24,11 +25,12 @@ const DateInput2: React.FC = () => {
   const handleSubmit = () => {
     if (currentInput === CORRECT_DATE) {
       setShowHearts(true);
+      setIsExiting(true); // Mulai animasi keluar
       setTimeout(() => {
         navigate('/countdown-page', { 
           state: { date: currentInput },
         });
-      }, 2000);
+      }, 3000); // Sesuaikan dengan durasi animasi HeartSpread
     } else {
       setIsShaking(true);
       setFillPercentage(0);
@@ -41,36 +43,27 @@ const DateInput2: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-100 to-red-50 p-4 sm:p-6 md:p-8 flex flex-col">
-      <motion.div
-        animate={{ scale: isShaking ? [1, 0.9, 1.1, 0.9, 1] : 1 }}
-        className="max-w-6xl mx-auto w-full flex-grow flex flex-col"
-      >
-        {/* Judul */}
-        <div className="text-center mb-6 sm:mb-8">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-pink-600 mb-2">
-            Masukkan Tanggal Kita Jadian Sayang!
-          </h1>
-          <p className="text-pink-400 text-sm sm:text-base">
-            Format: DD-MM-YYYY
-          </p>
-        </div>
-
-        {/* Grid Layout untuk Desktop dan Mobile */}
-        <div className="flex-grow grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-          {/* Card Foto (Sembunyi di Mobile) */}
-          <div className="hidden lg:block lg:col-span-1">
-            <ValentineCard />
-          </div>
-
-          {/* Konten Kanan (Chart Bar, Input Tanggal, Numpad, Submit Button) */}
-          <div className="col-span-1 lg:col-span-2 flex flex-col items-center gap-6">
-            {/* Chart Bar */}
-            <div className="w-20 sm:w-24">
-              <HeartBar fillPercentage={fillPercentage} />
+      <AnimatePresence>
+        {!isExiting && ( // Hanya render konten jika tidak sedang keluar
+          <motion.div
+            key="content"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { duration: 1 } }} // Animasi keluar
+            animate={{ scale: isShaking ? [1, 0.9, 1.1, 0.9, 1] : 1 }}
+            className="max-w-6xl mx-auto w-full flex-grow flex flex-col"
+          >
+            {/* Judul */}
+            <div className="text-center mb-6 sm:mb-8">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-pink-600 mb-2">
+                Tanggal jadian kita?
+              </h1>
+              <p className="text-pink-400 text-sm sm:text-base">
+                Format: DD-MM-YYYY
+              </p>
             </div>
 
             {/* Input Tanggal */}
-            <div className="w-full max-w-md">
+            <div className="w-full max-w-md mx-auto mb-6">
               <input
                 type="text"
                 value={currentInput}
@@ -80,25 +73,38 @@ const DateInput2: React.FC = () => {
               />
             </div>
 
-            {/* Numpad */}
-            <div className="w-full max-w-md">
-              <Numpad
-                onDateSubmit={() => {}}
-                onInputChange={handleInputChange}
-                currentInput={currentInput}
-              />
+            {/* Baris Horizontal untuk Card Foto, Chart Bar, dan Numpad */}
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-8 mb-6">
+              {/* Card Foto */}
+              <div className="hidden lg:block">
+                <ValentineCard />
+              </div>
+
+              {/* Chart Bar */}
+              <div className="w-20 sm:w-24">
+                <HeartBar fillPercentage={fillPercentage} />
+              </div>
+
+              {/* Numpad */}
+              <div className="w-full max-w-md">
+                <Numpad
+                  onDateSubmit={() => {}}
+                  onInputChange={handleInputChange}
+                  currentInput={currentInput}
+                />
+              </div>
             </div>
 
             {/* Submit Button */}
-            <div className="w-full max-w-md flex justify-center pt-2">
+            <div className="w-full max-w-md mx-auto flex justify-center">
               <SubmitButton
                 isEnabled={currentInput.length === 10}
                 onClick={handleSubmit}
               />
             </div>
-          </div>
-        </div>
-      </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Heart Spread Animation */}
       <HeartSpread show={showHearts} />
