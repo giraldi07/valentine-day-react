@@ -17,7 +17,7 @@ function DateInput() {
   const [isSuccess, setIsSuccess] = useState(false);
   const navigate = useNavigate();
 
-  const correctDate = '11/11/1111';
+  const correctDate = '01/02/2025';
 
   const playSound = (soundFile: string | undefined) => {
     const audio = new Audio(soundFile);

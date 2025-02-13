@@ -11,6 +11,8 @@ import Closing from './pages/Closing';
 import Music from './pages/Music';
 import { AnimatePresence } from 'framer-motion';
 import Games from './pages/Games';
+import DateInput2 from './pages/DateInput2';
+import CountdownPage from './pages/CountdownPage';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -20,6 +22,8 @@ function AnimatedRoutes() {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Opening />} />
         <Route path="/date-input" element={<DateInput />} />
+        <Route path="/countdown-page" element={<CountdownPage />} />
+        <Route path="/date-input2" element={<DateInput2 />} />
         <Route path="/days-of-love" element={<DaysOfLove />} />
         <Route path="/features" element={<Features />} />
         <Route path="/gallery" element={<Gallery />} />

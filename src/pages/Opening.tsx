@@ -43,7 +43,7 @@ function Opening() {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1.2 }}
-        onClick={() => navigate('/date-input')}
+        onClick={() => navigate('/date-input2')}
         className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg transform hover:scale-105 transition-all"
       >
         Open Your Gift
