@@ -27,7 +27,7 @@ function NumPad({ value, onChange, onSubmit }: NumPadProps) {
   };
 
   const formatDisplay = (val: string): string => {
-    if (val.length === 0) return 'DD/MM/YY';
+    if (val.length === 0) return 'DD/MM/YYYY';
     
     let formatted = val;
     if (val.length >= 2) {
@@ -41,11 +41,11 @@ function NumPad({ value, onChange, onSubmit }: NumPadProps) {
 
   return (
     <div className="w-full max-w-xs mx-auto">
-      <div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 mb-4 text-center shadow-lg border-2 border-red-200">
+      <div className="bg-white/90 backdrop-blur-sm rounded-lg p-3 mb-4 text-center shadow-lg border-2 border-red-200">
         <motion.span
           animate={{ scale: value ? [1, 1.05, 1] : 1 }}
           transition={{ duration: 0.2 }}
-          className="text-2xl font-bold text-red-600"
+          className="text-xl sm:text-2xl font-bold text-red-600"
         >
           {formatDisplay(value)}
         </motion.span>
@@ -59,7 +59,7 @@ function NumPad({ value, onChange, onSubmit }: NumPadProps) {
             whileTap={{ scale: 0.95 }}
             onClick={() => handleClick(btn)}
             className={`
-              p-4 rounded-lg font-bold text-lg shadow-md transition-all
+              p-3 sm:p-4 rounded-lg font-bold text-base sm:text-lg shadow-md transition-all
               ${btn === 'enter' ? 'bg-red-500 text-white hover:bg-red-600' :
                 btn === 'clear' ? 'bg-pink-200 text-red-600 hover:bg-pink-300' :
                 'bg-white text-red-600 hover:bg-red-50'}

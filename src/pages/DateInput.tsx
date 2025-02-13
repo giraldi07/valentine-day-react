@@ -7,31 +7,52 @@ import PageTransition from '../components/PageTransition';
 import Decorations from '../components/Decorations';
 import ChartBar from '../components/ChartBar';
 import ModalError from '../components/ModalError';
+import SuccessPopup from '../components/SuksesPopup';
+import errorSound from '../assets/audio/wrong.mp3';
+import successSound from '../assets/audio/success.mp3';
 
 function DateInput() {
   const [date, setDate] = useState('');
   const [isError, setIsError] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const navigate = useNavigate();
 
-  // Tanggal jadian yang benar (DD/MM/YY)
-  const correctDate = '14/02/23';
+  const correctDate = '11/11/1111';
+
+  const playSound = (soundFile: string | undefined) => {
+    const audio = new Audio(soundFile);
+    audio.play();
+  };
 
   const handleSubmit = () => {
-    if (date === correctDate) {
-      const formattedDate = `20${date.slice(6, 8)}-${date.slice(3, 5)}-${date.slice(0, 2)}`;
-      localStorage.setItem('anniversaryDate', formattedDate);
-      navigate('/days-of-love');
+    const cleanedDate = date.replace(/\D/g, '');
+    let formattedDate = cleanedDate;
+    if (cleanedDate.length >= 2) {
+      formattedDate = cleanedDate.slice(0, 2) + '/' + cleanedDate.slice(2);
+    }
+    if (cleanedDate.length >= 4) {
+      formattedDate = formattedDate.slice(0, 5) + '/' + formattedDate.slice(5);
+    }
+
+    if (formattedDate === correctDate) {
+      playSound(successSound);
+      setIsSuccess(true);
+      setTimeout(() => {
+        const formattedDateForStorage = `20${formattedDate.slice(6, 8)}-${formattedDate.slice(3, 5)}-${formattedDate.slice(0, 2)}`;
+        localStorage.setItem('anniversaryDate', formattedDateForStorage);
+        navigate('/days-of-love');
+      }, 2000);
     } else {
+      playSound(errorSound);
       setIsError(true);
     }
   };
 
-  // Hitung progress chart bar berdasarkan panjang input
   const progress = (date.length / 8) * 100;
 
   useEffect(() => {
     if (isError) {
-      document.body.classList.add('overflow-hidden'); // Mencegah scrollbar saat error
+      document.body.classList.add('overflow-hidden');
     } else {
       document.body.classList.remove('overflow-hidden');
     }
@@ -105,14 +126,6 @@ function DateInput() {
               When did our love story begin?
             </motion.h2>
 
-            <motion.p
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="text-red-400"
-            >
-              Enter our special date (DD/MM/YY)
-            </motion.p>
           </div>
 
           <motion.div
@@ -145,6 +158,8 @@ function DateInput() {
 
         {/* Modal Error */}
         <ModalError isOpen={isError} onClose={() => setIsError(false)} />
+        
+        <SuccessPopup isOpen={isSuccess} onClose={() => setIsSuccess(false)} />
       </div>
     </PageTransition>
   );
