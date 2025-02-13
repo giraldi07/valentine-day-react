@@ -123,7 +123,7 @@ function DateInput() {
               transition={{ delay: 0.2 }}
               className="text-3xl font-bold text-gray-800 mb-4"
             >
-              When did our love story begin?
+              Tanggal Jadian Kita?
             </motion.h2>
 
           </div>
