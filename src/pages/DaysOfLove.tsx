@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { differenceInDays, differenceInHours, differenceInMinutes, differenceInSeconds, parse } from 'date-fns';
 import { Heart } from 'lucide-react';
 import { motion } from 'framer-motion';
-import Timer from '../components/Timer';
+// import Timer from '../components/Timer';
 import Decorations from '../components/Decorations';
 import PageTransition from '../components/PageTransition';
 
@@ -58,12 +58,12 @@ function DaysOfLove() {
             </p>
           </motion.div>
 
-          <Timer
+          {/* <Timer
             days={days}
             hours={hours}
             minutes={minutes}
             seconds={seconds}
-          />
+          /> */}
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
