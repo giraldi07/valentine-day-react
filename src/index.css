@@ -23,6 +23,34 @@ body {
   line-height: 1.75;
 }
 
+/* Animasi untuk garis */
+.line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 5s ease-in-out infinite;
+}
+
+/* Animasi untuk setiap garis dengan delay berbeda */
+.line-1 {
+  animation-delay: 0s;
+}
+
+.line-2 {
+  animation-delay: 1s;
+}
+
+.line-3 {
+  animation-delay: 2s;
+}
+
+/* Keyframes untuk animasi */
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
 @keyframes heartBeat {
   0%,
   100% {
@@ -47,11 +75,15 @@ body {
 
 @keyframes heartSpin {
   0% {
-    transform: rotate(0deg);
+    transform: rotateY(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: rotateY(360deg);
   }
+}
+
+.animate-heartSpin {
+  animation: heartSpin 2s linear infinite;
 }
 
 .animate-heartBeat {
@@ -62,6 +94,3 @@ body {
   animation: heartPulse 2s infinite;
 }
 
-.animate-heartSpin {
-  animation: heartSpin 3s linear infinite;
-}

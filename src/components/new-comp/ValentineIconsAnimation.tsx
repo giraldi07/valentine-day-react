@@ -2,9 +2,9 @@ import React from 'react';
 
 const ValentineIcons: React.FC = () => {
   return (
-    <div className="flex justify-center items-center space-x-8 p-8">
+    <div className="flex justify-center items-center space-x-2 p-8">
       {/* Icon 1: Heart Beat */}
-      <div className="w-16 h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 animate-heartBeat">
+      <div className="w-10 h-10 animate-heartBeat">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-full w-full text-red-500"
@@ -16,7 +16,7 @@ const ValentineIcons: React.FC = () => {
       </div>
 
       {/* Icon 2: Heart Pulse */}
-      <div className="w-16 h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 animate-heartPulse">
+      <div className="w-14 h-14 animate-heartPulse">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-full w-full text-pink-500"
@@ -28,7 +28,7 @@ const ValentineIcons: React.FC = () => {
       </div>
 
       {/* Icon 3: Heart Spin */}
-      <div className="w-16 h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 animate-heartSpin">
+      <div className="w-10 h-10 animate-heartSpin">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-full w-full text-rose-500"
