@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { features } from '../data/features';
 import PageTransition from '../components/PageTransition';
 import Decorations from '../components/Decorations';
+import TimeCard from '../components/new-comp/TimeCard';
 
 function Features() {
   const navigate = useNavigate();
@@ -13,6 +14,13 @@ function Features() {
   const toggleFeatures = () => {
     setShowFeatures(!showFeatures);
   };
+  
+  const [timeSince] = useState({
+    days: 5,
+    hours: 12,
+    minutes: 30,
+    seconds: 45,
+  });
 
   return (
     <PageTransition>
@@ -86,6 +94,10 @@ function Features() {
                 </motion.div>
               );
             })}
+          </div>
+          {/* Countdown Timer */}
+          <div className="mt-40"> {/* Tambahkan margin-top untuk spacing */}
+            <TimeCard time={timeSince} title="Sudah selama ini ya!" style="bg-blue-200 text-blue-800" />
           </div>
         </div>
       </div>

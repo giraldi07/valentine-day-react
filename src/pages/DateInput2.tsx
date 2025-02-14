@@ -7,7 +7,7 @@ import SubmitButton from '../components/new-comp/SubmitButton';
 import ValentineCard from '../components/new-comp/ValentineCard';
 import HeartSpread from '../components/new-comp/HeartSpread';
 
-const CORRECT_DATE = '14-02-2024';
+const CORRECT_DATE = '10-02-2025';
 
 const DateInput2: React.FC = () => {
   const [currentInput, setCurrentInput] = useState('');
@@ -27,7 +27,7 @@ const DateInput2: React.FC = () => {
       setShowHearts(true);
       setIsExiting(true);
       setTimeout(() => {
-        navigate('/countdown-page', { 
+        navigate('/days-of-love', { 
           state: { date: currentInput },
         });
       }, 3000);
