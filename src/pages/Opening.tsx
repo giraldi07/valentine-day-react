@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import SlideToOpenButton from '../components/new-comp/SlideButton'; // Sesuaikan path sesuai struktur proyek Anda
 import TypingEffect from '../components/new-comp/TypingEffect';
 import ValentineIcons from '../components/new-comp/ValentineIconsAnimation';
+import BackgroundIconsAnimation from '../components/new-comp/BackgroundAnimations'; // Import komponen baru
 import CloudsImage from '../assets/images/clouds.svg';
 import LineLeftImage from '../assets/images/line-left.svg';
 import LineLoveImage from '../assets/images/line-love.svg';
-
 
 function Opening() {
   const navigate = useNavigate();
@@ -21,9 +21,10 @@ function Opening() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="h-screen max-w-full mx-auto bg-gradient-radial from-pink-100 from-20% to-gray-500 flex flex-col items-center justify-center"
+      className="h-screen max-w-full mx-auto bg-gradient-radial from-pink-100 from-20% to-gray-500 flex flex-col items-center justify-center relative"
     >
-      
+      {/* Tambahkan komponen BackgroundIconsAnimation di sini */}
+      <BackgroundIconsAnimation />
 
       <motion.div
         initial={{ scale: 0 }}
@@ -49,7 +50,6 @@ function Opening() {
         This is for
       </motion.h1>
 
-      
       <motion.p
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -94,8 +94,6 @@ function Opening() {
         />
       </motion.div>
 
-
-
       {/* Menambahkan gambar awan di bawah */}
       <motion.div
         initial={{ y: 20, opacity: 0 }}
@@ -109,7 +107,6 @@ function Opening() {
           className="w-full h-auto object-cover" 
         />
       </motion.div>
-
     </motion.div>
   );
 }

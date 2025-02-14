@@ -23,7 +23,7 @@ const SlideToOpenButton: React.FC<SlideToOpenButtonProps> = ({ onSlideSuccess })
   return (
     <div
       ref={sliderRef}
-      className="relative w-full max-w-md h-16 bg-gray-200 rounded-full border-2 shadow-md shadow-black border-orange-600 flex items-center justify-center cursor-pointer overflow-hidden select-none"
+      className="relative w-full z-50 max-w-md h-16 bg-gray-200 rounded-full border-2 shadow-md shadow-black border-orange-600 flex items-center justify-center cursor-pointer overflow-hidden select-none"
     >
       <motion.button
         className="absolute left-0 w-14 h-14 bg-pink-500 border-2 border-orange-600 rounded-full flex items-center justify-center shadow-md"
