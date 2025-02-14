@@ -7,6 +7,10 @@ import SubmitButton from '../components/new-comp/SubmitButton';
 import ValentineCard from '../components/new-comp/ValentineCard';
 import HeartSpread from '../components/new-comp/HeartSpread';
 
+// Import file suara
+import wrongSound from '../assets/audio/wrong.mp3';
+import successSound from '../assets/audio/success.mp3';
+
 const CORRECT_DATE = '10-02-2025';
 
 const DateInput2: React.FC = () => {
@@ -15,6 +19,7 @@ const DateInput2: React.FC = () => {
   const [isShaking, setIsShaking] = useState(false);
   const [showHearts, setShowHearts] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
+  const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
   const handleInputChange = (value: string) => {
@@ -26,6 +31,7 @@ const DateInput2: React.FC = () => {
     if (currentInput === CORRECT_DATE) {
       setShowHearts(true);
       setIsExiting(true);
+      new Audio(successSound).play(); // Play success sound
       setTimeout(() => {
         navigate('/days-of-love', { 
           state: { date: currentInput },
@@ -33,23 +39,30 @@ const DateInput2: React.FC = () => {
       }, 3000);
     } else {
       setIsShaking(true);
+      setIsError(true);
+      new Audio(wrongSound).play(); // Play error sound
       setFillPercentage(0);
       setTimeout(() => {
         setIsShaking(false);
+        setIsError(false);
         setCurrentInput('');
-      }, 500);
+      }, 1000); // Durasi efek error (1 detik)
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-100 to-red-50 p-4 sm:p-6 md:p-8 flex flex-col">
+    <div className={`min-h-screen bg-gradient-to-br from-pink-100 to-red-50 p-4 sm:p-6 md:p-8 flex flex-col ${isError ? 'error-effect' : ''}`}>
       <AnimatePresence>
         {!isExiting && (
           <motion.div
             key="content"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, transition: { duration: 1 } }}
-            animate={{ scale: isShaking ? [1, 0.9, 1.1, 0.9, 1] : 1 }}
+            animate={{
+              scale: isShaking ? [1, 0.98, 1.02, 0.98, 1] : 1, // Efek getar yang halus
+              x: isShaking ? [-5, 5, -5, 5, 0] : 0, // Efek getar horizontal
+            }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }} // Transisi halus
             className="max-w-4xl mx-auto w-full flex-grow flex flex-col"
           >
             {/* Judul */}

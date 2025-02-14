@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Opening from './pages/Opening';
-import DateInput from './pages/DateInput';
 import Features from './pages/Features';
 import Gallery from './pages/Gallery';
 import PhotoCard from './pages/PhotoCard';
@@ -20,7 +19,6 @@ function AnimatedRoutes() {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Opening />} />
-        <Route path="/date-input" element={<DateInput />} />
         <Route path="/days-of-love" element={<DaysOfLove />} />
         <Route path="/date-input2" element={<DateInput2 />} />
         <Route path="/features" element={<Features />} />
