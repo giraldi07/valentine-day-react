@@ -23,7 +23,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ isEnabled, onClick }) => {
       onClick={handleClick}
       className={`
         relative w-full max-w-[200px] h-14 rounded-full 
-        flex items-center px-4
+        flex items-center px-4 py-2 text-base sm:text-lg
         transition-colors duration-300
         ${isEnabled 
           ? 'bg-gradient-to-r from-pink-500 to-red-500 cursor-pointer' 

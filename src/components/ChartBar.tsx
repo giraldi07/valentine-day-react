@@ -20,7 +20,7 @@ function ChartBar({ progress }: ChartBarProps) {
       </div>
 
       {/* Chart Bar */}
-      <div className="w-10 sm:w-12 md:w-16 h-40 sm:h-48 md:h-60 bg-pink-100 rounded-2xl overflow-hidden relative shadow-lg border-2 border-pink-200">
+      <div className="w-10 sm:w-12 md:w-16 h-40 sm:h-48 md:h-60 bg-pink-200 rounded-2xl overflow-hidden relative shadow-lg border-4 border-pink-950">
         {/* Bar dengan efek 3D dan gradient */}
         <motion.div
           className="w-full bg-gradient-to-t from-red-500 to-pink-400 absolute bottom-0 rounded-t-xl shadow-inner"

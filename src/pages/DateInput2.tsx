@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion'; // Tambahkan AnimatePresence
+import { motion, AnimatePresence } from 'framer-motion';
 import Numpad from '../components/new-comp/Numpad';
 import HeartBar from '../components/new-comp/HeartBar';
 import SubmitButton from '../components/new-comp/SubmitButton';
@@ -14,7 +14,7 @@ const DateInput2: React.FC = () => {
   const [fillPercentage, setFillPercentage] = useState(0);
   const [isShaking, setIsShaking] = useState(false);
   const [showHearts, setShowHearts] = useState(false);
-  const [isExiting, setIsExiting] = useState(false); // State untuk animasi keluar
+  const [isExiting, setIsExiting] = useState(false);
   const navigate = useNavigate();
 
   const handleInputChange = (value: string) => {
@@ -25,12 +25,12 @@ const DateInput2: React.FC = () => {
   const handleSubmit = () => {
     if (currentInput === CORRECT_DATE) {
       setShowHearts(true);
-      setIsExiting(true); // Mulai animasi keluar
+      setIsExiting(true);
       setTimeout(() => {
         navigate('/countdown-page', { 
           state: { date: currentInput },
         });
-      }, 3000); // Sesuaikan dengan durasi animasi HeartSpread
+      }, 3000);
     } else {
       setIsShaking(true);
       setFillPercentage(0);
@@ -44,22 +44,27 @@ const DateInput2: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-100 to-red-50 p-4 sm:p-6 md:p-8 flex flex-col">
       <AnimatePresence>
-        {!isExiting && ( // Hanya render konten jika tidak sedang keluar
+        {!isExiting && (
           <motion.div
             key="content"
             initial={{ opacity: 1 }}
-            exit={{ opacity: 0, transition: { duration: 1 } }} // Animasi keluar
+            exit={{ opacity: 0, transition: { duration: 1 } }}
             animate={{ scale: isShaking ? [1, 0.9, 1.1, 0.9, 1] : 1 }}
-            className="max-w-6xl mx-auto w-full flex-grow flex flex-col"
+            className="max-w-4xl mx-auto w-full flex-grow flex flex-col"
           >
             {/* Judul */}
             <div className="text-center mb-6 sm:mb-8">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-pink-600 mb-2">
-                Tanggal jadian kita?
-              </h1>
-              <p className="text-pink-400 text-sm sm:text-base">
-                Format: DD-MM-YYYY
-              </p>
+              <motion.h2
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 1 }}
+                className="text-3xl md:text-4xl font-bold text-red-600 mb-0 text-center"
+                style={{
+                  fontFamily: 'Lobster Two, cursive',
+                }}
+              >
+                Tanggal Jadian Kita?
+              </motion.h2>
             </div>
 
             {/* Input Tanggal */}
@@ -86,7 +91,7 @@ const DateInput2: React.FC = () => {
               </div>
 
               {/* Numpad */}
-              <div className="w-full max-w-md">
+              <div className="w-full max-w-sm">
                 <Numpad
                   onDateSubmit={() => {}}
                   onInputChange={handleInputChange}

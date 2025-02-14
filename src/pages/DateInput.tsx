@@ -117,14 +117,19 @@ function DateInput() {
               <Calendar size={40} className="text-red-500" />
             </motion.div>
 
-            <motion.h2
+            <motion.h1
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="text-3xl font-bold text-gray-800 mb-4"
+              className="text-4xl md:text-7xl font-bold text-red-600 mb-6 text-center"
+              style={{
+                fontFamily: 'Lobster Two, cursive',
+                letterSpacing: '0.1em',        // Menambahkan jarak antar huruf
+
+              }}
             >
               Tanggal Jadian Kita?
-            </motion.h2>
+            </motion.h1>
 
           </div>
 

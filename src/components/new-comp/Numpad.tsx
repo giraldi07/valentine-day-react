@@ -26,7 +26,7 @@ const Numpad: React.FC<NumpadProps> = ({ onDateSubmit, onInputChange, currentInp
   };
 
   return (
-    <div className="grid grid-cols-3 gap-4 p-4 bg-pink-50 rounded-xl shadow-lg max-w-xs mx-auto">
+    <div className="grid grid-cols-3 gap-4 p-4 bg-pink-50 rounded-xl shadow-lg max-w-sm mx-auto">
       {buttons.map((btn) => (
         <motion.button
           key={btn}
