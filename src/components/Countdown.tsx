@@ -1,9 +1,8 @@
-// Countdown.tsx
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import type { CountdownProps } from '../types/index';
 import { VALENTINE_DATE } from '../data/valentineday';
-import TimeCard from '../components/new-comp/TimeCard'; // Import komponen TimeCard
+import TimeCard from '../components/new-comp/TimeCard';
 
 const Countdown: React.FC<CountdownProps> = () => {
   const location = useLocation();
@@ -52,9 +51,16 @@ const Countdown: React.FC<CountdownProps> = () => {
   }, [selectedDate]);
 
   return (
-    <div className="flex flex-col items-center space-y-8 p-4">
-      <TimeCard time={timeSince} title="Sudah Berjalan Selama" style="bg-gray-200 text-gray-800" />
-      <TimeCard time={timeUntilValentine} title="Menuju Hari Valentine" style="bg-pink-200 text-pink-800" />
+    <div
+      className="grid grid-cols-1 md:grid-cols-2 items-center text-center gap-4 sm:gap-6 md:gap-8 p-4"
+      style={{ fontFamily: 'Lobster Two, cursive' }}
+    >
+      <div className="max-w-[400px] w-full mx-auto">
+        <TimeCard time={timeSince} title="Sudah Berjalan Selama" style="bg-gray-200 text-gray-800 flex flex-col justify-center" />
+      </div>
+      <div className="max-w-[400px] w-full mx-auto">
+        <TimeCard time={timeUntilValentine} title="Menuju Hari Valentine" style="bg-pink-200 text-pink-800 flex flex-col justify-center" />
+      </div>
     </div>
   );
 };

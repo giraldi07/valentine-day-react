@@ -21,25 +21,26 @@ const DaysOfLove: React.FC = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="min-h-screen bg-gradient-to-br from-pink-100 to-red-50 p-4 sm:p-6 flex flex-col"
+      className="relative min-h-screen bg-gradient-to-br from-pink-100 to-red-50 p-4 sm:p-6 flex flex-col overflow-hidden"
     >
+      {/* Pita besar di pojok */}
+      <div className="absolute top-0 left-0 w-40 h-40 sm:w-48 sm:h-48 bg-pink-300 rotate-45 -translate-x-1/2 -translate-y-1/2 shadow-md clip-path-triangle"></div>
+      <div className="absolute top-0 right-0 w-40 h-40 sm:w-48 sm:h-48 bg-pink-300 rotate-45 translate-x-1/2 -translate-y-1/2 shadow-md clip-path-triangle"></div>
+      <div className="absolute bottom-0 left-0 w-40 h-40 sm:w-48 sm:h-48 bg-pink-300 rotate-45 -translate-x-1/2 translate-y-1/2 shadow-md clip-path-triangle"></div>
+      <div className="absolute bottom-0 right-0 w-40 h-40 sm:w-48 sm:h-48 bg-pink-300 rotate-45 translate-x-1/2 translate-y-1/2 shadow-md clip-path-triangle"></div>
+
       <div className="max-w-3xl mx-auto w-full flex-grow flex flex-col items-center justify-center py-6 sm:py-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           className="text-center mb-8 sm:mb-10"
-          style={{
-            fontFamily: 'Lobster Two, cursive',
-            size: '48px',
-          }}
+          style={{ fontFamily: 'Lobster Two, cursive' }}
         >
-          <h1 className="text-2xl sm:text-3xl font-bold text-pink-600 mb-3">
-            Days of Love
-          </h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-pink-600 mb-3">Days of Love</h1>
           <div className="flex items-center justify-center gap-2 sm:gap-3">
             <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-pink-500" fill="#ec4899" />
-            <span className="text-base sm:text-lg text-pink-500">
+            <span className="text-base sm:text-lg text-pink-500" style={{ fontFamily: 'Montserrat, sans-serif' }}>
               Our journey together
             </span>
             <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-pink-500" fill="#ec4899" />
@@ -55,6 +56,7 @@ const DaysOfLove: React.FC = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 1.1 }}
           className="text-base sm:text-lg text-pink-600 text-center mb-5"
+          style={{ fontFamily: 'Montserrat, sans-serif' }}
         >
           Every second with you is a treasure ❤️
         </motion.p>
