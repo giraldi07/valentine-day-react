@@ -1,16 +1,23 @@
 import { useNavigate } from 'react-router-dom';
 import { Heart } from 'lucide-react';
 import { motion } from 'framer-motion';
+import SlideToOpenButton from '../components/new-comp/SlideButton'; // Sesuaikan path sesuai struktur proyek Anda
+import TypingEffect from '../components/new-comp/TypingEffect';
 
 function Opening() {
   const navigate = useNavigate();
+
+  // Fungsi yang akan dipanggil ketika tombol berhasil di-slide
+  const handleSlideSuccess = () => {
+    navigate('/date-input2');
+  };
 
   return (
     <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-gradient-to-br from-pink-100 to-red-100 flex flex-col items-center justify-center p-4"
+      className="min-h-screen bg-gradient-radial from-gray-100 from-30% to-gray-500 flex flex-col items-center justify-center p-4"
     >
       <motion.div
         initial={{ scale: 0 }}
@@ -27,27 +34,26 @@ function Opening() {
         transition={{ delay: 0.8 }}
         className="text-4xl md:text-6xl font-bold text-red-600 mb-6 text-center"
       >
-        Happy Valentine's Day
+        This is For
       </motion.h1>
       
       <motion.p
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1 }}
-        className="text-xl md:text-2xl text-red-400 mb-12 text-center"
+        className="text-xl md:text-2xl text-red-400 mb-12 p-6 text-center"
       >
-        A special gift for my special someone ❤️
+        <TypingEffect text="{Masukan Nama Disini}" speed={90} />
       </motion.p>
       
-      <motion.button
+      {/* Ganti tombol dengan komponen SlideToOpenButton */}
+      <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        onClick={() => navigate('/date-input2')}
-        className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg transform hover:scale-105 transition-all"
+        transition={{ delay: 1.5 }}
       >
-        Open Your Gift
-      </motion.button>
+        <SlideToOpenButton onSlideSuccess={handleSlideSuccess} />
+      </motion.div>
     </motion.div>
   );
 }
