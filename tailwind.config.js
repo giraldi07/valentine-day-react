@@ -14,6 +14,11 @@ export default {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-20px)' },
         }
+      },
+      fontFamily: {
+        'bebas-neue': ['Bebas Neue', 'sans-serif'],
+        'lobster-two': ['Lobster Two', 'cursive'],
+        'montserrat': ['Montserrat', 'sans-serif'],
       }
     },
   },

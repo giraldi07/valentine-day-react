@@ -11,6 +11,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 .prose {
   max-width: 65ch;
   margin-left: auto;
@@ -20,4 +21,47 @@ body {
 .prose p {
   margin-bottom: 1.5em;
   line-height: 1.75;
+}
+
+@keyframes heartBeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes heartPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes heartSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-heartBeat {
+  animation: heartBeat 1.5s infinite;
+}
+
+.animate-heartPulse {
+  animation: heartPulse 2s infinite;
+}
+
+.animate-heartSpin {
+  animation: heartSpin 3s linear infinite;
 }
