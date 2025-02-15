@@ -13,7 +13,7 @@ const SlideToOpenButton: React.FC<SlideToOpenButtonProps> = ({ onSlideSuccess })
   const handleDragEnd = (_: any, info: { offset: { x: number } }) => {
     if (sliderRef.current) {
       const sliderWidth = sliderRef.current.offsetWidth;
-      if (info.offset.x > sliderWidth * 0.6) {
+      if (info.offset.x > sliderWidth * 0.5) {
         setIsOpen(true);
         onSlideSuccess();
       }
@@ -44,7 +44,7 @@ const SlideToOpenButton: React.FC<SlideToOpenButtonProps> = ({ onSlideSuccess })
 
       {/* Teks */}
       <span className="text-gray-700 font-semibold px-4 text-sm sm:text-lg transition-opacity duration-300">
-        {isOpen ? "Terbuka!" : "---->Slide disini ya!"}
+        {isOpen ? "Terbuka!" : "---->Slide disini!"}
       </span>
     </div>
   );

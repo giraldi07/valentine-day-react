@@ -1,6 +1,26 @@
+import { useEffect, useState } from "react";
 import ReactCurvedText from "react-curved-text";
 
 const CurvedText = () => {
+  const [fontSize, setFontSize] = useState(90); // Ukuran font default
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) { // Jika lebar layar < 768px (mobile)
+        setFontSize(40); // Ukuran font lebih kecil untuk mobile
+      } else {
+        setFontSize(90); // Ukuran font default untuk desktop
+      }
+    };
+
+    // Panggil fungsi handleResize saat komponen dimount dan saat window di-resize
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    // Bersihkan event listener saat komponen di-unmount
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <ReactCurvedText
       width={400} // Lebar area teks
@@ -15,7 +35,7 @@ const CurvedText = () => {
       textProps={{
         style: {
           fontFamily: "Lobster Two, cursive",
-          fontSize: 90,
+          fontSize: fontSize, // Ukuran font dinamis
           fontWeight: "bold",
           fill: "#ee746e", // Warna teks
         },

@@ -37,59 +37,63 @@ function Opening() {
           className="w-full h-full object-cover"
         />
         {/* Overlay Semi-Transparan */}
-        <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-10"></div>
       </motion.div>
 
+      <div className="flex flex-col mb-20 items-center justify-center h-screen z-50 relative">
+        {/* Animasi Lottie */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          className="z-50 w-full max-w-[80%] sm:max-w-[60%] md:max-w-[50%] lg:max-w-[40%]"
+        >
+          <DotLottieReact
+            src="/src/assets/lottie-animations/red-line-love.json"
+            loop
+            autoplay
+            className="w-full max-h-[200px] sm:max-h-[250px] md:max-h-[300px] h-auto"
+          />
+        </motion.div>
 
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.8 }}
-        className="mb-[-2%] mt-[-14%]"
-      >
-        <DotLottieReact
-          src="/src/assets/lottie-animations/red-line-love.json"
-          loop
-          autoplay
-          className="w-full h-auto"
-        />
-      </motion.div>
+        {/* Judul */}
+        <motion.h1
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          className="text-center mt-2 mb-4 md:mb-8 px-4 z-50"
+        >
+          <CurvedText />
+        </motion.h1>
 
-      
-      {/* Judul */}
-      <motion.h1
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.8 }}
-        className="text-center px-4 z-50"
-      >
-        <CurvedText />
-      </motion.h1>
+        {/* Teks Typing Effect */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="text-lg sm:text-2xl md:text-3xl mb-6 sm:mb-8 px-4 text-center w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] z-50"
+          style={{
+            height: '100px',
+            fontWeight: 'bold',
+            fontFamily: 'League Spartan',
+          }}
+        >
+          <TypingEffect text="{Masukan Nama Disini}" speed={90} />
+        </motion.div>
 
-      {/* Teks Typing Effect */}
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="text-2xl sm:text-3xl md:text-4xl mb-12 sm:mb-12 px-4 text-center w-full max-w-[90%] z-50"
-        style={{ 
-          height: '48px',
-          fontWeight: 'bold',
-          fontFamily: 'League Spartan',
-        }}
-      >
-        <TypingEffect text="{Masukan Nama Disini}" speed={90} />
-      </motion.div>
+        {/* Tombol Slide */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="w-full max-w-[180px] sm:max-w-[200px] md:max-w-[220px] px-2 z-50"
+        >
+          <SlideToOpenButton onSlideSuccess={handleSlideSuccess} />
+        </motion.div>
+      </div>
 
-      {/* Tombol Slide */}
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="w-full max-w-[200px] sm:max-w-[250px] px-2 z-50"
-      >
-        <SlideToOpenButton onSlideSuccess={handleSlideSuccess} />
-      </motion.div>
+
+
 
       {/* Gambar Line Love L */}
       <motion.div
