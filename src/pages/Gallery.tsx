@@ -1,57 +1,208 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import pinIcon from '../assets/images/icons/pin.svg'; // Import ikon pin
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import LeftLineBottom from '../assets/images/crawl-line.svg';
+import RightLineBottom from '../assets/images/heart-outline.svg';
 
 function Gallery() {
   const navigate = useNavigate();
-  
-  const photos = [
-    "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=500&h=500&fit=crop",
-    "https://images.unsplash.com/photo-1523595857-fe9ee689f76f?w=500&h=500&fit=crop",
-    "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=500&h=500&fit=crop",
-    "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=500&h=500&fit=crop",
-    "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=500&h=500&fit=crop",
-    "https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=500&h=500&fit=crop"
-  ];
+  const [photos, setPhotos] = useState([
+    {
+      src: "https://storage.googleapis.com/a1aa/image/JrF4M7UR1zq-9I9hpLk5yLugsiyl6Np01h7q5M8KRkY.jpg",
+      title: "Summer"
+    },
+    {
+      src: "https://storage.googleapis.com/a1aa/image/JrF4M7UR1zq-9I9hpLk5yLugsiyl6Np01h7q5M8KRkY.jpg",
+      title: "Birthday"
+    },
+    {
+      src: "https://storage.googleapis.com/a1aa/image/JrF4M7UR1zq-9I9hpLk5yLugsiyl6Np01h7q5M8KRkY.jpg",
+      title: "Last Val"
+    },
+    {
+      src: "https://storage.googleapis.com/a1aa/image/JrF4M7UR1zq-9I9hpLk5yLugsiyl6Np01h7q5M8KRkY.jpg",
+      title: "First Date"
+    }
+  ]);
+  const [selectedPhoto, setSelectedPhoto] = useState<{ src: string; title: string } | null>(null);
+
+  // Fungsi untuk menambah gambar
+  const addPhoto = () => {
+    const newPhoto = {
+      src: "https://storage.googleapis.com/a1aa/image/JrF4M7UR1zq-9I9hpLk5yLugsiyl6Np01h7q5M8KRkY.jpg", // URL gambar baru
+      title: `Memory ${photos.length + 1}` // Judul otomatis
+    };
+    setPhotos([...photos, newPhoto]);
+  };
+
+  // Fungsi untuk menampilkan detail gambar
+  const openPhotoDetail = (photo: { src: string; title: string }) => {
+    setSelectedPhoto(photo);
+  };
+
+  // Fungsi untuk menutup detail gambar
+  const closePhotoDetail = () => {
+    setSelectedPhoto(null);
+  };
+
+  const handleBack = () => {
+    navigate('/features');
+  };
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-gradient-to-br from-pink-100 to-red-100 p-6"
+      className="relative min-h-screen bg-gradient-to-br from-pink-100 to-red-50 sm:p-6 p-6 overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-red-600 text-center mb-12">
-          Our Beautiful Moments
-        </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+
+      <div className="max-w-7xl mt-16 mx-auto z-40">
+        {/* Tombol Kembali */}
+        <button
+          onClick={handleBack}
+          className="fixed bottom-4 left-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full font-semibold shadow-lg transform hover:scale-105 transition-all z-50"
+        >
+          Back
+        </button>
+
+        {/* Gambar Garis Kiri */}
+        <div className="absolute h-screen bottom-[-8vw] left-[-18vw] z-0">
+          <img 
+            src={LeftLineBottom} 
+            alt="Left Line" 
+            className="w-[80vw] h-auto object-cover -rotate-12"
+          />
+        </div>
+
+        {/* Gambar Garis Kanan */}
+        <div className="absolute bottom-[-10vw] right-[-24vw] z-0">
+          <img 
+            src={RightLineBottom} 
+            alt="Right Line" 
+            className="w-[80vw] sm:w-[50vw] h-auto object-cover opacity-45"
+          />
+        </div>
+
+        <motion.h1 
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 1 }}
+          className="text-3xl md:text-4xl font-bold text-red-600 text-center mb-8"
+          style={{
+            fontFamily: 'Breathing',
+          }}
+        >
+          Our Valentine Memories
+        </motion.h1>
+
+
+
+        {/* Grid Foto */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6 lg:gap-16">
           {photos.map((photo, index) => (
             <motion.div
               key={index}
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: index * 0.1 }}
-              className="relative group"
+              className="bg-white rounded-lg shadow-lg overflow-hidden relative cursor-pointer"
+              onClick={() => openPhotoDetail(photo)}
             >
-              <img
-                src={photo}
-                alt={`Memory ${index + 1}`}
-                className="w-full h-64 object-cover rounded-lg shadow-lg transform group-hover:scale-105 transition-all duration-300"
+
+
+              {/* Ikon Pin */}
+              <div className="absolute top-2 left-1/2 transform -translate-x-1/2 -translate-y-0 z-10">
+                <img src={pinIcon} alt="Pin Icon" className="w-8 h-8" />
+              </div>
+
+              {/* Gambar */}
+              <motion.img
+                src={photo.src}
+                alt={photo.title}
+                className="w-full h-48 object-cover"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
               />
+
+              {/* Judul */}
+              <div className="p-4 text-center">
+                <p className="font-semibold text-red-600">{photo.title}</p>
+              </div>
             </motion.div>
           ))}
-        </div>
-        
-        <div className="text-center mt-12">
-          <button
-            onClick={() => navigate('/photo-card')}
-            className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg transform hover:scale-105 transition-all"
+
+          {/* Tombol Add (+) */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: photos.length * 0.1 }}
+            className="bg-white rounded-lg shadow-lg overflow-hidden relative flex items-center justify-center cursor-pointer col-span-2 sm:col-span-2 md:col-span-1 lg:col-span-1"
+            onClick={addPhoto}
           >
-            Continue
-          </button>
+            <div className="w-full h-48 flex items-center justify-center">
+              <span className="text-6xl text-red-500">+</span>
+            </div>
+          </motion.div>
         </div>
       </div>
+
+      {/* Modal untuk Detail Gambar */}
+      <AnimatePresence>
+        {selectedPhoto && (
+          <motion.div
+            initial={{ y: -50, opacity: 0, scale: 0.8 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            exit={{ y: 100, opacity: 0, scale: 0.8 }}
+            transition={{ type: "spring", stiffness: 120, damping: 10 }}
+            className="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 120, damping: 10 }}
+              className="bg-white rounded-lg shadow-lg max-w-2xl w-full overflow-hidden relative"
+            >
+              {/* Animasi Lottie di Pojok Kanan Atas */}
+              <motion.div
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="absolute top-4 right-4 z-10 w-20 h-20"
+              >
+                <DotLottieReact
+                  src="/src/assets/lottie-animations/love-gift.lottie" // Path ke file Lottie
+                  loop
+                  autoplay
+                  className="w-full h-full"
+                />
+              </motion.div>
+
+              {/* Gambar Modal */}
+              <img
+                src={selectedPhoto.src}
+                alt={selectedPhoto.title}
+                className="w-full h-96 object-cover"
+              />
+
+              {/* Konten Modal */}
+              <div className="p-4 text-center">
+                <p className="font-semibold text-red-600">{selectedPhoto.title}</p>
+                <button
+                  onClick={closePhotoDetail}
+                  className="mt-4 bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-full font-semibold shadow-lg transform hover:scale-105 transition-all"
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
