@@ -126,6 +126,7 @@ const DaysOfLove: React.FC = () => {
           whileTap={{ scale: 0.95 }}
           onClick={() => navigate('/features')}
           className="px-4 sm:px-6 py-2 sm:py-3 bg-pink-500 text-white font-medium sm:font-semibold text-base sm:text-lg rounded-lg shadow-md hover:bg-pink-600 transition-all duration-300 w-fit z-40"
+          style={{ fontFamily: 'Lobster Two, cursive' }}
         >
           Explore Features
         </motion.button>

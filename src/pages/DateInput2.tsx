@@ -171,6 +171,7 @@ const DateInput2: React.FC = () => {
               <button
                 onClick={handleContinue}
                 className="mt-4 w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition-colors"
+                style={{ fontFamily: 'Lobster Two, cursive' }}
               >
                 Continue
               </button>

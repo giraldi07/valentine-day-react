@@ -209,6 +209,7 @@ function Gallery() {
                 <button
                   onClick={closePhotoDetail}
                   className="mt-2 md:mt-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full font-semibold shadow-lg transform hover:scale-105 transition-all text-sm md:text-base"
+                  style={{ fontFamily: 'Lobster Two, cursive' }}
                 >
                   Close
                 </button>
