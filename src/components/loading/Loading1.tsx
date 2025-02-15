@@ -16,7 +16,7 @@ const Loading1 = () => {
           className="relative w-24 h-24 flex items-center justify-center"
           animate={{
             scale: [1, 1.1, 1.1, 1, 1],
-            rotate: [0, 0, 360, 360, 0],
+            rotate: [0, 360], // Hanya memutar dari 0 ke 360 derajat
           }}
           transition={{
             duration: 2,
@@ -38,24 +38,10 @@ const Loading1 = () => {
               repeat: Infinity,
             }}
           />
-
-          {/* Glow Effect */}
-          <motion.div
-            className="absolute w-24 h-24 bg-pink-400 rounded-full opacity-0"
-            animate={{
-              scale: [1, 1.5, 1.5, 1, 1],
-              opacity: [0, 0.3, 0, 0, 0],
-            }}
-            transition={{
-              duration: 2,
-              ease: "easeInOut",
-              repeat: Infinity,
-            }}
-          />
         </motion.div>
 
         {/* Falling Hearts */}
-        {[...Array(5)].map((_, i) => (
+        {[...Array(10)].map((_, i) => ( // Menambah jumlah hati yang berjatuhan
           <motion.div
             key={i}
             className="absolute w-6 h-6 text-pink-400"
@@ -66,7 +52,7 @@ const Loading1 = () => {
             animate={{
               y: [0, window.innerHeight + 100],
               opacity: [1, 0],
-              rotate: [0, 360],
+              rotate: [0, 360], // Hanya memutar dari 0 ke 360 derajat
             }}
             transition={{
               duration: Math.random() * 2 + 3, // Random duration between 3-5 seconds
