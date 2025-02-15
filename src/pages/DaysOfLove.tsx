@@ -4,6 +4,12 @@ import { motion } from 'framer-motion';
 import Countdown from '../components/Countdown';
 import { Heart } from 'lucide-react';
 
+const ribbonVariants = {
+  initial: { scale: 10, opacity: 1, rotate: -30 },
+  animate: { scale: 1, opacity: 1, transition: { duration: 1.2, ease: 'easeOut' }, rotate: -30 },
+  exit: { scale: 10, opacity: 1, transition: { duration: 1, ease: 'easeIn' }, rotate: -30 }
+};
+
 const DaysOfLove: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -20,14 +26,26 @@ const DaysOfLove: React.FC = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
       className="relative min-h-screen bg-gradient-to-br from-pink-100 to-red-50 p-4 sm:p-6 flex flex-col overflow-hidden"
     >
-      {/* Pita besar di pojok */}
-      <div className="absolute top-0 left-0 w-40 h-40 sm:w-48 sm:h-48 bg-pink-300 rotate-45 -translate-x-1/2 -translate-y-1/2 shadow-md clip-path-triangle"></div>
-      <div className="absolute top-0 right-0 w-40 h-40 sm:w-48 sm:h-48 bg-pink-300 rotate-45 translate-x-1/2 -translate-y-1/2 shadow-md clip-path-triangle"></div>
-      <div className="absolute bottom-0 left-0 w-40 h-40 sm:w-48 sm:h-48 bg-pink-300 rotate-45 -translate-x-1/2 translate-y-1/2 shadow-md clip-path-triangle"></div>
-      <div className="absolute bottom-0 right-0 w-40 h-40 sm:w-48 sm:h-48 bg-pink-300 rotate-45 translate-x-1/2 translate-y-1/2 shadow-md clip-path-triangle"></div>
+      {/* Pita hanya di pojok kiri atas dengan bentuk miring */}
+      <motion.div
+        variants={ribbonVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        className="absolute top-0 left-0 w-40 h-12 sm:w-48 sm:h-16 bg-pink-300 -rotate-30 -translate-x-1/2 -translate-y-1/2 shadow-md"
+      ></motion.div>
+      {/* Pita pojok kanan bawah dengan bentuk miring */}
+      <motion.div
+        variants={ribbonVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        className="absolute bottom-0 right-0 w-40 h-12 sm:w-48 sm:h-16 bg-pink-300 rotate-30 translate-x-1/2 translate-y-1/2 shadow-md"
+      ></motion.div>
 
       <div className="max-w-3xl mx-auto w-full flex-grow flex flex-col items-center justify-center py-6 sm:py-8">
         <motion.div

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import ValentineVideo from '../assets/video/valvid.mp4';
 
 function Closing() {
   return (
@@ -16,7 +17,7 @@ function Closing() {
         className="absolute inset-0 w-full h-full object-cover opacity-50"
       >
         <source
-          src="https://assets.mixkit.co/videos/preview/mixkit-heart-floating-on-water-background-loop-183-large.mp4"
+          src={ValentineVideo}
           type="video/mp4"
         />
       </video>
