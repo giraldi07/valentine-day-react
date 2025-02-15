@@ -20,6 +20,7 @@ const DateInput2: React.FC = () => {
   const [showHearts, setShowHearts] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [showValentineCard, setShowValentineCard] = useState(false); // State baru untuk mengontrol tampilan ValentineCard
   const navigate = useNavigate();
 
   const handleInputChange = (value: string) => {
@@ -33,10 +34,8 @@ const DateInput2: React.FC = () => {
       setIsExiting(true);
       new Audio(successSound).play(); // Play success sound
       setTimeout(() => {
-        navigate('/days-of-love', { 
-          state: { date: currentInput },
-        });
-      }, 3000);
+        setShowValentineCard(true); // Tampilkan ValentineCard setelah 1 detik
+      }, 1000);
     } else {
       setIsShaking(true);
       setIsError(true);
@@ -48,6 +47,12 @@ const DateInput2: React.FC = () => {
         setCurrentInput('');
       }, 1000); // Durasi efek error (1 detik)
     }
+  };
+
+  const handleContinue = () => {
+    navigate('/days-of-love', { 
+      state: { date: currentInput },
+    });
   };
 
   return (
@@ -126,6 +131,35 @@ const DateInput2: React.FC = () => {
 
       {/* Heart Spread Animation */}
       <HeartSpread show={showHearts} />
+
+      {/* Overlay dan ValentineCard */}
+      <AnimatePresence>
+        {showValentineCard && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center"
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="bg-white rounded-lg p-6 max-w-sm w-full"
+            >
+              <ValentineCard />
+              <button
+                onClick={handleContinue}
+                className="mt-4 w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition-colors"
+              >
+                Continue
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
