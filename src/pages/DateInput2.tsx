@@ -96,7 +96,7 @@ const DateInput2: React.FC = () => {
                 transition={{ delay: 1 }}
                 className="text-3xl md:text-4xl font-bold text-red-600 mb-0 text-center"
                 style={{
-                  fontFamily: 'Lobster Two, cursive',
+                  fontFamily: 'Breathing',
                 }}
               >
                 Tanggal Jadian Kita?

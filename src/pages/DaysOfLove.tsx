@@ -75,9 +75,9 @@ const DaysOfLove: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           className="text-center mb-8 sm:mb-10"
-          style={{ fontFamily: 'Lobster Two, cursive' }}
+          style={{ fontFamily: 'Breathing' }}
         >
-          <h1 className="text-3xl sm:text-7xl font-bold text-pink-600 mb-3">Days of Love</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-red-600 mb-3 text-center">Days of Love</h1>
           <div className="flex items-center justify-center gap-2 sm:gap-3">
             <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-pink-500" fill="#ec4899" />
             <span className="text-base sm:text-lg text-pink-500" style={{ fontFamily: 'Montserrat, sans-serif', }}>

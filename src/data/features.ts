@@ -1,7 +1,15 @@
+import cameraIcon from '../assets/images/icons/galery.svg';
+// import musicIcon from '../assets/images/icons/music.svg';
+import checkSquareIcon from '../assets/images/icons/todolist.svg';
+import gameIcon from '../assets/images/icons/game.svg';
+import mailIcon from '../assets/images/icons/loveletter.svg';
+
+
+
 export const features = [
   {
     id: 'gallery',
-    icon: 'Camera',
+    icon: cameraIcon, // Path ke gambar ikon
     title: 'Gallery',
     path: '/gallery',
     animation: {
@@ -9,29 +17,29 @@ export const features = [
       tap: { scale: 0.9 }
     }
   },
-  {
-    id: 'card',
-    icon: 'Heart',
-    title: 'Love Card',
-    path: '/photo-card',
-    animation: {
-      hover: { scale: 1.1, y: -10 },
-      tap: { scale: 0.9 }
-    }
-  },
-  {
-    id: 'music',
-    icon: 'Music',
-    title: 'Music',
-    path: '/music',
-    animation: {
-      hover: { scale: 1.1, rotate: 360 },
-      tap: { scale: 0.9 }
-    }
-  },
+  // {
+  //   id: 'card',
+  //   icon: heartIcon, // Path ke gambar ikon
+  //   title: 'Love Card',
+  //   path: '/photo-card',
+  //   animation: {
+  //     hover: { scale: 1.1, y: -10 },
+  //     tap: { scale: 0.9 }
+  //   }
+  // },
+  // {
+  //   id: 'music',
+  //   icon: musicIcon, // Path ke gambar ikon
+  //   title: 'Music',
+  //   path: '/music',
+  //   animation: {
+  //     hover: { scale: 1.1, rotate: 360 },
+  //     tap: { scale: 0.9 }
+  //   }
+  // },
   {
     id: 'todo',
-    icon: 'CheckSquare',
+    icon: checkSquareIcon, // Path ke gambar ikon
     title: 'Plans',
     path: '/todo-list',
     animation: {
@@ -41,9 +49,9 @@ export const features = [
   },
   {
     id: 'games',
-    icon: 'Gamepad2', // Icon dari Lucide React
+    icon: gameIcon, // Path ke gambar ikon
     title: 'Mini Games',
-    path: '/games', // Path ke halaman Games.tsx
+    path: '/games',
     animation: {
       hover: { scale: 1.1, rotate: 360 },
       tap: { scale: 0.9 }
@@ -51,7 +59,7 @@ export const features = [
   },
   {
     id: 'letter',
-    icon: 'Mail',
+    icon: mailIcon, // Path ke gambar ikon
     title: 'Letter',
     path: '/love-letter',
     animation: {

@@ -1,6 +1,6 @@
 // components/Loading1.tsx
 import { motion } from 'framer-motion';
-import bigLoveImage from '../../assets/images/biglove.svg';
+import bigLoveImage from '../../assets/images/icons/biglove.svg';
 
 const Loading1 = () => {
   return (
