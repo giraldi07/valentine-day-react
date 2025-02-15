@@ -3,6 +3,7 @@ import { useLocation, Navigate, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Countdown from '../components/Countdown';
 import { Heart } from 'lucide-react';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 const ribbonVariants = {
   initial: { scale: 10, opacity: 1, rotate: -30 },
@@ -30,6 +31,8 @@ const DaysOfLove: React.FC = () => {
       transition={{ duration: 1 }}
       className="relative min-h-screen bg-gradient-to-br from-pink-100 to-red-50 p-4 sm:p-6 flex flex-col overflow-hidden"
     >
+
+
       {/* Pita hanya di pojok kiri atas dengan bentuk miring */}
       <motion.div
         variants={ribbonVariants}
@@ -55,19 +58,39 @@ const DaysOfLove: React.FC = () => {
           className="text-center mb-8 sm:mb-10"
           style={{ fontFamily: 'Lobster Two, cursive' }}
         >
-          <h1 className="text-2xl sm:text-3xl font-bold text-pink-600 mb-3">Days of Love</h1>
+          <h1 className="text-3xl sm:text-7xl font-bold text-pink-600 mb-3">Days of Love</h1>
           <div className="flex items-center justify-center gap-2 sm:gap-3">
             <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-pink-500" fill="#ec4899" />
-            <span className="text-base sm:text-lg text-pink-500" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            <span className="text-base sm:text-lg text-pink-500" style={{ fontFamily: 'Montserrat, sans-serif', }}>
               Our journey together
             </span>
             <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-pink-500" fill="#ec4899" />
           </div>
         </motion.div>
 
-        <div className="w-full mb-8">
-          <Countdown targetDate={targetDate} />
-        </div>
+
+      {/* Animasi Lottie */}
+      <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 2 }}
+          className="w- mt-[-7%] max-w-[80%] sm:max-w-[60%] md:max-w-[50%] lg:max-w-[40%]"
+      >
+         <DotLottieReact
+            src="/src/assets/lottie-animations/cat.lottie"
+            loop
+            autoplay
+            className="w-full max-h-[200px] sm:max-h-[250px] md:max-h-[300px] h-auto"
+          />
+      </motion.div>
+
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.5 }}
+          className="w-full mb-8">
+            <Countdown targetDate={targetDate} />
+        </motion.div>
 
         <motion.p
           initial={{ opacity: 0 }}
