@@ -5,8 +5,11 @@ import { CheckSquare, Square } from "lucide-react";
 import PageTransition from "../components/PageTransition";
 import Decorations from "../components/Decorations";
 import ImageBackground from '../assets/images/paper.svg';
-import LeftLineBottom from '../assets/images/crawl-line.svg';
 import RightLineBottom from '../assets/images/heart-outline.svg';
+import LeftFrame from '../assets/images/left-frame.svg';
+import RightFrame from '../assets/images/left-frame.svg';
+
+
 
 interface TodoItem {
   id: number;
@@ -59,23 +62,41 @@ function TodoList() {
   return (
     <PageTransition>
       <div className="relative overflow-hidden min-h-screen bg-gradient-to-b from-gray-100 to-gray-300 p-10 sm:16 md:p-24">
+
+        {/* Gambar atas Kiri Kanan */}
+        <div className="absolute h-screen top-[0] left-[0] z-10">
+          <img 
+            src={LeftFrame} 
+            alt="Left Line" 
+            className="w-[20vw] h-auto object-cover"
+          />
+        </div>
+        <div className="absolute h-screen top-[0] right-[0] z-10">
+          <img 
+            src={RightFrame} 
+            alt="Left Line" 
+            className="w-[20vw] h-auto object-cover scale-x-[-1]"
+          />
+        </div>
+
+
         <Decorations />
 
         {/* Gambar Garis Kiri */}
-        <div className="absolute h-screen bottom-[-8vw] left-[-18vw] z-0">
+        <div className="absolute bottom-[-10vw] left-[-14vw] z-0">
           <img 
-            src={LeftLineBottom} 
+            src={RightLineBottom}  
             alt="Left Line" 
-            className="w-[80vw] h-auto object-cover -rotate-12"
+            className="w-[40vw] sm:w-[30vw] h-auto object-cover scale-x-[-1]"
           />
         </div>
 
         {/* Gambar Garis Kanan */}
-        <div className="absolute bottom-[-10vw] right-[-24vw] z-0">
+        <div className="absolute bottom-[-10vw] right-[-14vw] z-0">
           <img 
             src={RightLineBottom} 
             alt="Right Line" 
-            className="w-[80vw] sm:w-[50vw] h-auto object-cover opacity-45"
+            className="w-[40vw] sm:w-[30vw] h-auto object-cover"
           />
         </div>
 
@@ -85,7 +106,7 @@ function TodoList() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative z-40 mx-auto max-w-3xl lg:max-w-4xl xl:max-w-5xl bg-white/90 backdrop-blur-sm rounded-md shadow-lg mt-24 md:mt-2 p-10 sm:p-16 md:p-24 border-4 border-gray-700 border-dotted"
+          className="relative z-40 mx-auto max-w-3xl lg:max-w-4xl xl:max-w-5xl bg-white/90 backdrop-blur-sm shadow-lg shadow-black/50 mt-24 md:mt-2 p-10 sm:p-16 md:p-24 border-4 border-gray-700 border-dotted"
           style={{
             backgroundImage: `url(${ImageBackground})`, // Gunakan backtick untuk template literal
             backgroundSize: "cover",
@@ -113,7 +134,7 @@ function TodoList() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.8 }}
-                className="flex items-center justify-between p-4 border-2 border-gray-800 shadow-md bg-white hover:bg-pink-50 transition-all duration-300 rounded-lg"
+                className="flex items-center justify-between p-4 border-2 border-slate-600 shadow-md bg-white hover:bg-pink-50 transition-all duration-300"
               >
                 {/* Teks Aktivitas */}
                 <span
@@ -122,6 +143,10 @@ function TodoList() {
                       ? "line-through text-pink-500"
                       : "text-pink-700"
                   }`}
+                  style={{
+                    fontFamily: 'Lobster Two, cursive',
+                    fontWeight: 'bold',
+                  }}
                 >
                   {activity.text}
                 </span>
@@ -132,33 +157,49 @@ function TodoList() {
                   whileTap={{ scale: 0.9 }}
                   onClick={() => toggleActivity(activity.id)}
                   className="cursor-pointer"
+
                 >
                   {activity.completed ? (
-                    <CheckSquare className="text-pink-500 w-6 h-6" />
+                    <CheckSquare className="text-red-800 w-6 h-6" />
                   ) : (
-                    <Square className="text-pink-300 w-6 h-6" />
+                    <Square className="text-red-500 w-6 h-6" />
                   )}
                 </motion.div>
               </motion.div>
             ))}
           </div>
 
-          {/* Tombol Save & Back */}
+          {/* Tombol Back & Save */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.8 }}
-            className="text-center mt-6 md:mt-8"
+            className="flex justify-between mt-6 md:mt-8"
           >
+            {/* Tombol Back */}
+            <button
+              onClick={() => navigate(-1)}
+              className="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 sm:px-8 sm:py-3 
+                        rounded-md font-semibold shadow-lg transform hover:scale-105 
+                        transition-all duration-300"
+              style={{ fontFamily: "Lobster Two, cursive" }}
+            >
+              Back
+            </button>
+
+            {/* Tombol Save */}
             <button
               onClick={handleSaveAndBack}
               disabled={isLoading}
-              className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 sm:px-8 sm:py-3 rounded-full font-semibold shadow-lg transform hover:scale-105 transition-all duration-300"
+              className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 sm:px-8 sm:py-3 
+                        rounded-md font-semibold shadow-lg transform hover:scale-105 
+                        transition-all duration-300"
               style={{ fontFamily: "Lobster Two, cursive" }}
             >
-              {isLoading ? "Saving..." : "Save & Back"}
+              {isLoading ? "Saving..." : "Save"}
             </button>
           </motion.div>
+
         </motion.div>
       </div>
 
