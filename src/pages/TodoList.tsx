@@ -9,8 +9,6 @@ import RightLineBottom from '../assets/images/heart-outline.svg';
 import LeftFrame from '../assets/images/left-frame.svg';
 import RightFrame from '../assets/images/left-frame.svg';
 
-
-
 interface TodoItem {
   id: number;
   text: string;
@@ -33,6 +31,7 @@ function TodoList() {
   const [isLoading, setIsLoading] = useState(false);
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
 
+  // Simpan data ke localStorage setiap kali activities berubah
   useEffect(() => {
     localStorage.setItem("valentineActivities", JSON.stringify(activities));
   }, [activities]);
@@ -47,22 +46,26 @@ function TodoList() {
     );
   };
 
-  const handleSaveAndBack = () => {
-    setIsLoading(true);
+  // Fungsi untuk menyimpan data
+  const handleSave = () => {
+    setIsLoading(true); // Tampilkan loading
     setTimeout(() => {
-      setIsLoading(false);
-      setShowSuccessPopup(true);
+      setIsLoading(false); // Sembunyikan loading
+      setShowSuccessPopup(true); // Tampilkan popup berhasil
       setTimeout(() => {
-        setShowSuccessPopup(false);
-        navigate("/features");
-      }, 1500);
-    }, 2000);
+        setShowSuccessPopup(false); // Sembunyikan popup setelah 1.5 detik
+      }, 3000);
+    }, 1000); // Simulasikan proses save selama 1 detik
+  };
+
+  // Fungsi untuk kembali ke halaman sebelumnya
+  const handleBack = () => {
+    navigate('/features'); // Kembali ke halaman sebelumnya
   };
 
   return (
     <PageTransition>
       <div className="relative overflow-hidden min-h-screen bg-gradient-to-b from-gray-100 to-gray-300 p-10 sm:16 md:p-24">
-
         {/* Gambar atas Kiri Kanan */}
         <div className="absolute h-screen top-[0] left-[0] z-10">
           <img 
@@ -78,7 +81,6 @@ function TodoList() {
             className="w-[20vw] h-auto object-cover scale-x-[-1]"
           />
         </div>
-
 
         <Decorations />
 
@@ -100,13 +102,12 @@ function TodoList() {
           />
         </div>
 
-
         {/* Kontainer Utama */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative z-40 mx-auto max-w-3xl lg:max-w-4xl xl:max-w-5xl bg-white/90 backdrop-blur-sm shadow-lg shadow-black/50 mt-24 md:mt-2 p-10 sm:p-16 md:p-24 border-4 border-gray-700 border-dotted"
+          className="relative z-40 mx-auto max-w-3xl lg:max-w-4xl xl:max-w-5xl bg-white/90 backdrop-blur-sm shadow-lg shadow-black/50 mt-16 md:mt-2 p-10 sm:p-16 md:p-24 border-4 border-gray-700 border-dotted"
           style={{
             backgroundImage: `url(${ImageBackground})`, // Gunakan backtick untuk template literal
             backgroundSize: "cover",
@@ -157,7 +158,6 @@ function TodoList() {
                   whileTap={{ scale: 0.9 }}
                   onClick={() => toggleActivity(activity.id)}
                   className="cursor-pointer"
-
                 >
                   {activity.completed ? (
                     <CheckSquare className="text-red-800 w-6 h-6" />
@@ -178,7 +178,7 @@ function TodoList() {
           >
             {/* Tombol Back */}
             <button
-              onClick={() => navigate(-1)}
+              onClick={handleBack}
               className="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 sm:px-8 sm:py-3 
                         rounded-md font-semibold shadow-lg transform hover:scale-105 
                         transition-all duration-300"
@@ -189,7 +189,7 @@ function TodoList() {
 
             {/* Tombol Save */}
             <button
-              onClick={handleSaveAndBack}
+              onClick={handleSave}
               disabled={isLoading}
               className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 sm:px-8 sm:py-3 
                         rounded-md font-semibold shadow-lg transform hover:scale-105 
@@ -199,7 +199,6 @@ function TodoList() {
               {isLoading ? "Saving..." : "Save"}
             </button>
           </motion.div>
-
         </motion.div>
       </div>
 
@@ -216,13 +215,13 @@ function TodoList() {
             animate={{ scale: 1 }}
             exit={{ scale: 0.8 }}
             transition={{ type: "spring", stiffness: 120, damping: 10 }}
-            className="bg-white rounded-lg shadow-lg p-4 md:p-6 text-center w-full max-w-sm"
+            className="bg-white rounded-lg shadow-lg p-4 md:p-6 text-center w-[250px] max-w-sm md:w-[350px]"
           >
             <h2 className="text-xl md:text-2xl font-bold text-red-600 mb-3 md:mb-4">
-              Berhasil Disimpan!
+              Nice Dear 😍
             </h2>
             <p className="text-gray-700 text-sm md:text-base">
-              Data Anda telah disimpan dengan sukses.
+              Data has been Saved.
             </p>
           </motion.div>
         </motion.div>
