@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import Countdown from '../components/Countdown';
 import { Heart } from 'lucide-react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import BgAnimImage2 from '../assets/images/gif/flower.gif';
+
 
 const ribbonVariants = {
   initial: { scale: 10, opacity: 1, rotate: -30 },
@@ -31,6 +33,23 @@ const DaysOfLove: React.FC = () => {
       transition={{ duration: 1 }}
       className="relative min-h-screen bg-gradient-to-br from-pink-100 to-red-50 p-4 sm:p-6 flex flex-col overflow-hidden"
     >
+
+      {/* Background Animasi */}
+      <motion.div
+        className="fixed inset-0 w-full h-full z-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
+      >
+        <img
+          src={BgAnimImage2}
+          alt="Background Animation"
+          className="w-full h-full object-cover"
+        />
+        {/* Overlay Semi-Transparan */}
+        <div className="absolute inset-0 bg-black bg-opacity-10"></div>
+      </motion.div>
+
 
 
       {/* Pita hanya di pojok kiri atas dengan bentuk miring */}
@@ -106,7 +125,7 @@ const DaysOfLove: React.FC = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => navigate('/features')}
-          className="px-4 sm:px-6 py-2 sm:py-3 bg-pink-500 text-white font-medium sm:font-semibold text-base sm:text-lg rounded-lg shadow-md hover:bg-pink-600 transition-all duration-300 w-fit"
+          className="px-4 sm:px-6 py-2 sm:py-3 bg-pink-500 text-white font-medium sm:font-semibold text-base sm:text-lg rounded-lg shadow-md hover:bg-pink-600 transition-all duration-300 w-fit z-40"
         >
           Explore Features
         </motion.button>
