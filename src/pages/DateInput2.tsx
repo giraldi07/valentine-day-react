@@ -71,7 +71,7 @@ const DateInput2: React.FC = () => {
             className="max-w-4xl mx-auto w-full flex-grow flex flex-col"
           >
             {/* Judul */}
-            <div className="text-center mb-6 sm:mb-8">
+            <div className="text-center mt-6 mb-6 sm:mb-8">
               <motion.h2
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
