@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Heart } from 'lucide-react';
 import { motion } from 'framer-motion';
+import DotBackground from '../components/bg-animations/DotBackground';
+import pitaImage from '../assets/images/pita.svg';
 
 function LoveLetter() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,9 +14,10 @@ function LoveLetter() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-gradient-to-br from-pink-100 to-red-100 flex items-center justify-center p-6"
+      className="min-h-screen bg-gradient-to-br from-gray-400 to-gray-800 flex items-center justify-center p-6"
     >
-      <div className="max-w-lg w-full">
+      <DotBackground />
+      <div className="max-w-lg w-full z-40 relative">
         {!isOpen ? (
           <motion.div
             initial={{ scale: 0 }}
@@ -32,8 +35,15 @@ function LoveLetter() {
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="bg-white rounded-lg shadow-xl p-8"
+            className="bg-white rounded-lg shadow-xl p-8 relative"
           >
+            <div className="absolute -top-4 -right-4 w-16 h-16 md:w-24 md:h-24">
+              <img 
+                src={pitaImage} 
+                alt="Pita"
+                className="w-full h-full rotate-12" 
+              />
+            </div>
             <div className="prose prose-lg mx-auto">
               <h3 className="text-2xl font-bold text-red-600 mb-4">My Dearest,</h3>
               
