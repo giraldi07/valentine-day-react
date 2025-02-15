@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import pinIcon from '../assets/images/icons/pin.svg'; // Import ikon pin
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import LeftLineBottom from '../assets/images/crawl-line.svg';
 import RightLineBottom from '../assets/images/heart-outline.svg';
+import BgAnimImage from '../assets/images/gif/flower.gif';
+
 
 function Gallery() {
   const navigate = useNavigate();
@@ -68,6 +69,22 @@ function Gallery() {
         >
           Back
         </button>
+
+        {/* Background Animasi */}
+        <motion.div
+          className="fixed inset-0 w-full h-full z-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
+          <img
+            src={BgAnimImage}
+            alt="Background Animation"
+            className="w-full h-full object-cover"
+          />
+          {/* Overlay Semi-Transparan */}
+          <div className="absolute inset-0 bg-black bg-opacity-10"></div>
+        </motion.div>
 
         {/* Gambar Garis Kiri */}
         <div className="absolute h-screen bottom-[-8vw] left-[-18vw] z-0">
@@ -165,36 +182,33 @@ function Gallery() {
               animate={{ scale: 1 }}
               exit={{ scale: 0.9 }}
               transition={{ type: "spring", stiffness: 120, damping: 10 }}
-              className="bg-white rounded-lg shadow-lg max-w-2xl w-full overflow-hidden relative"
+              className="bg-white rounded-lg shadow-lg max-w-[90vw] md:max-w-4xl w-full overflow-hidden relative flex flex-col md:flex-row"
             >
-              {/* Animasi Lottie di Pojok Kanan Atas */}
-              <motion.div
-                initial={{ y: -20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="absolute top-4 right-4 z-10 w-20 h-20"
-              >
-                <DotLottieReact
-                  src="/src/assets/lottie-animations/love-gift.lottie" // Path ke file Lottie
-                  loop
-                  autoplay
-                  className="w-full h-full"
+              {/* Gambar Modal (Kiri) */}
+              <div className="w-full md:w-1/2 h-auto">
+                <img
+                  src={selectedPhoto.src}
+                  alt={selectedPhoto.title}
+                  className="w-full h-full object-cover"
                 />
-              </motion.div>
+              </div>
 
-              {/* Gambar Modal */}
-              <img
-                src={selectedPhoto.src}
-                alt={selectedPhoto.title}
-                className="w-full h-96 object-cover"
-              />
+              {/* Konten Modal (Kanan) */}
+              <div className="w-full md:w-1/2 p-4 md:p-6 flex flex-col justify-center">
+                {/* Judul Gambar */}
+                <h2 className="text-xl md:text-2xl font-bold text-red-600 mb-2 md:mb-4">
+                  {selectedPhoto.title}
+                </h2>
 
-              {/* Konten Modal */}
-              <div className="p-4 text-center">
-                <p className="font-semibold text-red-600">{selectedPhoto.title}</p>
+                {/* Pesan Singkat */}
+                <p className="text-sm md:text-base text-gray-700 mb-4 md:mb-6">
+                  Ini adalah pesan singkat yang menjelaskan tentang gambar ini. Anda bisa menambahkan deskripsi atau cerita singkat di sini.
+                </p>
+
+                {/* Tombol Close */}
                 <button
                   onClick={closePhotoDetail}
-                  className="mt-4 bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-full font-semibold shadow-lg transform hover:scale-105 transition-all"
+                  className="mt-2 md:mt-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full font-semibold shadow-lg transform hover:scale-105 transition-all text-sm md:text-base"
                 >
                   Close
                 </button>
