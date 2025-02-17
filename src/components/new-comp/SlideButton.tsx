@@ -1,21 +1,23 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { Gift, Heart } from "lucide-react";
 import { motion } from "framer-motion";
+import OpeningData from "../../data/pages-data/opening";
 
 interface SlideToOpenButtonProps {
-  onSlideSuccess: () => void;
+  isOpen: boolean; // Prop untuk menentukan apakah tombol terbuka atau tertutup
+  onSlideSuccess: () => void; // Callback saat slide berhasil
+  onSlideChange: () => void; // Callback saat status slide berubah
 }
 
-const SlideToOpenButton: React.FC<SlideToOpenButtonProps> = ({ onSlideSuccess }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const SlideToOpenButton: React.FC<SlideToOpenButtonProps> = ({ isOpen, onSlideSuccess, onSlideChange }) => {
   const sliderRef = useRef<HTMLDivElement>(null);
 
   const handleDragEnd = (_: any, info: { offset: { x: number } }) => {
     if (sliderRef.current) {
       const sliderWidth = sliderRef.current.offsetWidth;
       if (info.offset.x > sliderWidth * 0.5) {
-        setIsOpen(true);
-        onSlideSuccess();
+        onSlideSuccess(); // Panggil callback saat slide berhasil
+        onSlideChange(); // Panggil callback untuk mengubah status isOpen
       }
     }
   };
@@ -29,10 +31,10 @@ const SlideToOpenButton: React.FC<SlideToOpenButtonProps> = ({ onSlideSuccess })
       <motion.button
         className="absolute left-1 w-12 h-12 sm:w-14 sm:h-14 bg-pink-500 border-2 border-orange-600 rounded-full flex items-center justify-center shadow-md"
         drag="x"
-        dragConstraints={{ left: 0, right: 200 }}
+        dragConstraints={{ left: 0, right: sliderRef.current ? sliderRef.current.offsetWidth - 60 : 200 }} // Batas drag dinamis
         dragElastic={0.2}
         onDragEnd={handleDragEnd}
-        animate={{ x: isOpen ? 200 : 0 }}
+        animate={{ x: isOpen ? (sliderRef.current ? sliderRef.current.offsetWidth - 60 : 200) : 0 }} // Animasi saat terbuka
         transition={{ type: "spring", stiffness: 120, damping: 12 }}
       >
         {isOpen ? (
@@ -43,8 +45,8 @@ const SlideToOpenButton: React.FC<SlideToOpenButtonProps> = ({ onSlideSuccess })
       </motion.button>
 
       {/* Teks */}
-      <span className="text-gray-700 font-semibold px-4 text-sm sm:text-lg transition-opacity duration-300">
-        {isOpen ? "Terbuka!" : "---->Slide disini!"}
+      <span className={OpeningData.slideButton.className}>
+        {isOpen ? OpeningData.slideButton.text.open : OpeningData.slideButton.text.closed}
       </span>
     </div>
   );

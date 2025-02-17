@@ -5,7 +5,7 @@ function TekaTeki() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-radial from-red-50 via-pink-100 to-red-100 p-6 flex flex-col items-center justify-center">
+    <div className="min-h-screen bg-gradient-radial from-gray-50 via-gray-300 to-gray-500 p-6 flex flex-col items-center justify-center">
       {/* Container untuk iframe */}
       <div className="w-full max-w-4xl h-[70vh] relative">
         <iframe

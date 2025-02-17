@@ -2,19 +2,16 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import SlideToOpenButton from '../components/new-comp/SlideButton';
 import TypingEffect from '../components/new-comp/TypingEffect';
-import LineLoveImage from '../assets/images/line-love.svg';
-import CloudRImage from '../assets/images/cloudR.svg';
-import CloudLImage from '../assets/images/cloudL.svg';
-import LoveAnimation from '../assets/lottie-animations/red-line-love.json';
-import BgAnimImage from '../assets/images/gif/blink-blink.gif';
-import CurvedText from '../components/new-comp/CurvedText';
 import Lottie from 'lottie-react';
+import CurvedText from '../components/new-comp/CurvedText';
 import HeartSpread from '../components/new-comp/HeartSpread';
 import { useState } from 'react';
+import OpeningData from '../data/pages-data/opening'; // Impor data dari file terpisah
 
 function Opening() {
   const navigate = useNavigate();
   const [showHearts, setShowHearts] = useState(false); // State untuk mengontrol tampilan HeartSpread
+  const [isOpen, setIsOpen] = useState(false); // State untuk status tombol slide
 
   const handleSlideSuccess = () => {
     setShowHearts(true); // Tampilkan efek HeartSpread
@@ -23,15 +20,17 @@ function Opening() {
     }, 2000); // Sesuaikan waktu dengan durasi efek HeartSpread
   };
 
+  const handleSlideChange = () => {
+    setIsOpen(!isOpen); // Toggle status tombol open/close
+  };
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="h-screen max-w-full mx-auto bg-gradient-radial from-gray-100 from-30% to-gray-300 flex flex-col items-center justify-center relative overflow-hidden"
+      className={`h-screen max-w-full mx-auto ${OpeningData.background.gradient} flex flex-col items-center justify-center relative overflow-hidden`}
     >
-
       {/* Background Animasi */}
       <motion.div
         className="fixed inset-0 w-full h-full z-0"
@@ -40,36 +39,24 @@ function Opening() {
         transition={{ delay: 0.5 }}
       >
         <img
-          src={BgAnimImage}
+          src={OpeningData.images.bgAnimation}
           alt="Background Animation"
           className="w-full h-full object-cover"
         />
         {/* Overlay Semi-Transparan */}
-        <div className="absolute inset-0 bg-black bg-opacity-10"></div>
+        <div className={`absolute inset-0 ${OpeningData.background.overlay}`}></div>
       </motion.div>
 
       <div className="flex flex-col mb-20 items-center justify-center h-screen z-50 relative">
-        {/* Animasi Lottie */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="z-50 w-full mt-[-20vw] md:mt-[-10vw] max-w-[80%] sm:max-w-[60%] md:max-w-[50%] lg:max-w-[40%]"
-        >
-          <Lottie
-            animationData={LoveAnimation}
-            className="w-full max-h-[200px] sm:max-h-[250px] md:max-h-[300px] h-auto"
-          />
-        </motion.div>
-
         {/* Judul */}
         <motion.h1
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="text-center mt-2 mb-4 md:mb-8 px-4 z-50"
+          className={`text-center mt-2 mb-4 md:mb-8 px-4 z-50 ${OpeningData.pageTitle.color}`}
+          style={{ fontFamily: OpeningData.pageTitle.fontFamily }}
         >
-          <CurvedText />
+          <CurvedText text={OpeningData.pageTitle.text} />
         </motion.h1>
 
         {/* Teks Typing Effect */}
@@ -77,14 +64,20 @@ function Opening() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1 }}
-          className="text-lg sm:text-2xl md:text-3xl mb-6 sm:mb-8 px-4 text-center w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] z-50"
+          className={`text-lg sm:text-2xl md:text-3xl mb-6 sm:mb-8 px-4 text-center w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] z-50 ${OpeningData.typingEffect.color}`}
           style={{
             height: '100px',
-            fontWeight: 'bold',
-            fontFamily: 'League Spartan',
+            fontFamily: OpeningData.typingEffect.fontFamily,
+            fontWeight: OpeningData.typingEffect.fontWeight,
           }}
         >
-          <TypingEffect text="{Masukan Nama Disini}" speed={90} />
+          <TypingEffect
+            text={OpeningData.typingEffect.text}
+            speed={OpeningData.typingEffect.speed}
+            color={OpeningData.typingEffect.color}
+            fontFamily={OpeningData.typingEffect.fontFamily}
+            fontWeight={OpeningData.typingEffect.fontWeight}
+          />
         </motion.div>
 
         {/* Tombol Slide */}
@@ -92,9 +85,9 @@ function Opening() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1.5 }}
-          className="w-full max-w-[180px] sm:max-w-[200px] md:max-w-[220px] mt-[-3vw] px-2 z-50"
+          className="w-full max-w-[150px] sm:max-w-[200px] md:max-w-[220px] mt-[-10vw] md:mt-[-3vw] px-[-2] md:px-2 z-50"
         >
-          <SlideToOpenButton onSlideSuccess={handleSlideSuccess} />
+          <SlideToOpenButton isOpen={isOpen} onSlideSuccess={handleSlideSuccess} onSlideChange={handleSlideChange} />
         </motion.div>
       </div>
 
@@ -103,12 +96,11 @@ function Opening() {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1.9 }}
-        className="z-30"
+        className="z-10"
       >
-        <img
-          src={LineLoveImage}
-          alt="Line Love"
-          className="absolute top-[-6vw] left-[-2vw] w-[20vw] md:w-[20vw] sm:w-[40vw] h-auto object-cover -rotate-45"
+        <Lottie
+          animationData={OpeningData.images.loveAnimation}
+          className="absolute top-[-40vw] left-[-50vw] md:top-[-24vw] md:left-[-30vw] w-[150vw] md:w-[90vw] sm:w-[40vw] h-auto object-cover -rotate-45 scale-y-[-1]"
         />
       </motion.div>
 
@@ -117,12 +109,11 @@ function Opening() {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 2 }}
-        className="z-30"
+        className="z-10"
       >
-        <img
-          src={LineLoveImage}
-          alt="Line Love"
-          className="absolute top-[-6vw] right-[-2vw] w-[20vw] md:w-[20vw] sm:w-[40vw] h-auto object-cover scale-x-[-1] rotate-45"
+        <Lottie
+          animationData={OpeningData.images.loveAnimation}
+          className="absolute bottom-[-40vw] right-[-50vw] md:bottom-[-10vw] md:right-[-23vw] lg:bottom-[-24vw] lg:right-[-30vw] w-[150vw] md:w-[90vw] sm:w-[40vw] h-auto object-cover -rotate-45"
         />
       </motion.div>
 
@@ -134,15 +125,15 @@ function Opening() {
         className="absolute bottom-0 left-0 right-0 w-full flex gap-0 z-10"
       >
         <img
-          src={CloudLImage}
+          src={OpeningData.images.cloudL}
           alt="CloudL"
-          className="w-1/2 h-auto object-cover"
+          className="w-[130vw] lg:w-1/2 h-auto object-cover"
         />
 
         <img
-          src={CloudRImage}
+          src={OpeningData.images.cloudR}
           alt="CloudR"
-          className="w-1/2 h-auto object-cover scale-x-[-1]"
+          className="w-[130vw] lg:w-1/2 h-auto object-cover scale-x-[-1]"
         />
       </motion.div>
 

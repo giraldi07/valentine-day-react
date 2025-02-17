@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
 import ReactCurvedText from "react-curved-text";
 
-const CurvedText = () => {
+interface CurvedTextProps {
+  text: string; // Tambahkan prop `text` sebagai parameter
+}
+
+const CurvedText = ({ text }: CurvedTextProps) => {
   const [fontSize, setFontSize] = useState(90); // Ukuran font default
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) { // Jika lebar layar < 768px (mobile)
-        setFontSize(40); // Ukuran font lebih kecil untuk mobile
+        setFontSize(58); // Ukuran font lebih kecil untuk mobile
       } else {
-        setFontSize(90); // Ukuran font default untuk desktop
+        setFontSize(80); // Ukuran font default untuk desktop
       }
     };
 
@@ -31,13 +35,14 @@ const CurvedText = () => {
       ry={70} // Radius vertikal untuk menyesuaikan bentuk lengkungan
       startOffset={40} // Mengatur posisi teks di jalur lengkungan
       reversed={true} // Membuat teks melengkung ke bawah
-      text="This is For"
+      text={text} // Prop `text` harus disediakan secara langsung
       textProps={{
         style: {
           fontFamily: "Lobster Two, cursive",
           fontSize: fontSize, // Ukuran font dinamis
           fontWeight: "bold",
-          fill: "red", // Warna teks
+          fill: "white", // Warna teks
+          textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)", // Efek shadow dengan kedalaman dan kontras yang pas
         },
       }}
       textPathProps={{

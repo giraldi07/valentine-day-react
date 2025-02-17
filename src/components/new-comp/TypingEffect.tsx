@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
 
 interface TypingEffectProps {
-  text: string;
-  speed?: number;
+  text: string; // Teks yang akan ditampilkan
+  speed?: number; // Kecepatan efek ketik (ms per karakter)
+  color?: string; // Warna teks (opsional)
+  fontFamily?: string; // Tipe font (opsional)
+  fontWeight?: string; // Ketebalan font (opsional)
 }
 
-const TypingEffect: React.FC<TypingEffectProps> = ({ text, speed = 100 }) => {
-  const [displayText, setDisplayText] = useState('');
+const TypingEffect: React.FC<TypingEffectProps> = ({
+  text,
+  speed = 100,
+  color,
+  fontFamily,
+  fontWeight,
+}) => {
+  const [displayText, setDisplayText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -30,7 +39,18 @@ const TypingEffect: React.FC<TypingEffectProps> = ({ text, speed = 100 }) => {
     }
   }, [currentIndex, text, speed, isDeleting]);
 
-  return <span className="text-blue-500 inline-block">{displayText}</span>;
+  return (
+    <span
+      className="inline-block"
+      style={{
+        color: color || "inherit", // Gunakan warna dari props atau warna default
+        fontFamily: fontFamily || "inherit", // Gunakan font dari props atau font default
+        fontWeight: fontWeight || "normal", // Gunakan ketebalan font dari props atau normal
+      }}
+    >
+      {displayText}
+    </span>
+  );
 };
 
 export default TypingEffect;

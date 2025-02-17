@@ -25,7 +25,7 @@ function Features() {
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-gradient-radial from-red-50 via-pink-100 to-red-100 p-4">
+      <div className="min-h-screen bg-gradient-radial from-gray-50 via-gray-300 to-gray-500 p-4">
         <Decorations />
 
         {/* Background Animasi */}

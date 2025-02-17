@@ -31,7 +31,7 @@ const DaysOfLove: React.FC = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
-      className="relative min-h-screen bg-gradient-to-br from-pink-100 to-red-50 p-4 sm:p-6 flex flex-col overflow-hidden"
+      className="relative min-h-screen bg-gradient-radial from-gray-50 via-gray-300 to-gray-500 p-4 sm:p-6 flex flex-col overflow-hidden"
     >
 
       {/* Background Animasi */}
@@ -58,7 +58,7 @@ const DaysOfLove: React.FC = () => {
         initial="initial"
         animate="animate"
         exit="exit"
-        className="absolute top-0 left-0 w-40 h-12 sm:w-48 sm:h-16 bg-pink-300 -rotate-30 -translate-x-1/2 -translate-y-1/2 shadow-md"
+        className="absolute top-0 left-0 w-40 h-12 sm:w-48 sm:h-16 bg-white -rotate-30 -translate-x-1/2 -translate-y-1/2 shadow-md"
       ></motion.div>
       {/* Pita pojok kanan bawah dengan bentuk miring */}
       <motion.div
@@ -66,7 +66,7 @@ const DaysOfLove: React.FC = () => {
         initial="initial"
         animate="animate"
         exit="exit"
-        className="absolute bottom-0 right-0 w-40 h-12 sm:w-48 sm:h-16 bg-pink-300 rotate-30 translate-x-1/2 translate-y-1/2 shadow-md"
+        className="absolute bottom-0 right-0 w-40 h-12 sm:w-48 sm:h-16 bg-white rotate-30 translate-x-1/2 translate-y-1/2 shadow-md"
       ></motion.div>
 
       <div className="max-w-3xl mx-auto w-full flex-grow flex flex-col items-center justify-center py-6 sm:py-8">
@@ -77,7 +77,7 @@ const DaysOfLove: React.FC = () => {
           className="text-center mb-8 sm:mb-10"
           style={{ fontFamily: 'Breathing' }}
         >
-          <h1 className="text-3xl md:text-4xl font-bold text-red-600 mb-3 text-center">Days of Love</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg mb-3 text-center">Days of Love</h1>
           <div className="flex items-center justify-center gap-2 sm:gap-3">
             <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-pink-500" fill="#ec4899" />
             <span className="text-base sm:text-lg text-pink-500" style={{ fontFamily: 'Montserrat, sans-serif', }}>
@@ -125,7 +125,7 @@ const DaysOfLove: React.FC = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => navigate('/features')}
-          className="px-4 sm:px-6 py-2 sm:py-3 bg-pink-500 text-white font-medium sm:font-semibold text-base sm:text-lg rounded-lg shadow-md hover:bg-pink-600 transition-all duration-300 w-fit z-40"
+          className="px-4 sm:px-6 py-2 sm:py-3 bg-red-500 text-white font-medium sm:font-semibold text-base sm:text-lg rounded-lg shadow-md hover:bg-orange-700 transition-all duration-300 w-fit z-40"
           style={{ fontFamily: 'Lobster Two, cursive' }}
         >
           Explore Features
