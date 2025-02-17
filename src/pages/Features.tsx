@@ -55,7 +55,7 @@ function Features() {
           />
         )}
 
-        <div className="relative max-w-4xl mx-auto mt-24 pt-8">
+        <div className="relative max-w-4xl mx-auto mt-10 pt-8">
           <motion.h1
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -79,7 +79,7 @@ function Features() {
               fontFamily: 'Montserrat, sans-serif',
             }}
           >
-            Let's explore our love journey together
+            Let's explore<br></br>our love journey together
           </motion.p>
 
           <div className="flex justify-center z-30 items-center gap-6 md:gap-8 flex-wrap relative">

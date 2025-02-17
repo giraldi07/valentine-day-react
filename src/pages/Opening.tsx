@@ -5,9 +5,10 @@ import TypingEffect from '../components/new-comp/TypingEffect';
 import LineLoveImage from '../assets/images/line-love.svg';
 import CloudRImage from '../assets/images/cloudR.svg';
 import CloudLImage from '../assets/images/cloudL.svg';
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import LoveAnimation from '../assets/lottie-animations/red-line-love.json';
 import BgAnimImage from '../assets/images/gif/blink-blink.gif';
 import CurvedText from '../components/new-comp/CurvedText';
+import Lottie from 'lottie-react';
 
 function Opening() {
   const navigate = useNavigate();
@@ -48,10 +49,8 @@ function Opening() {
           transition={{ delay: 0.8 }}
           className="z-50 w-full max-w-[80%] sm:max-w-[60%] md:max-w-[50%] lg:max-w-[40%]"
         >
-          <DotLottieReact
-            src="/src/assets/lottie-animations/red-line-love.json"
-            loop
-            autoplay
+          <Lottie
+            animationData={LoveAnimation}
             className="w-full max-h-[200px] sm:max-h-[250px] md:max-h-[300px] h-auto"
           />
         </motion.div>
