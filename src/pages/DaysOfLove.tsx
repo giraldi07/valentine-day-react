@@ -6,7 +6,7 @@ import Countdown from '../components/Countdown';
 import { Heart } from 'lucide-react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import BgAnimImage2 from '../assets/images/gif/flower.gif';
-import catAnimation from '../assets/images/lottie-animation/cat.json'
+import catAnimation from '../assets/lottie-animations/cat.json';
 
 const ribbonVariants = {
   initial: { scale: 10, opacity: 1, rotate: -30 },
