@@ -7,7 +7,7 @@ import quizImg from '../assets/images/quiz.svg';
 
 const games = [
   { id: 'tts', name: 'Teka-Teki Silang', image: tekaTekiImg },
-  { id: 'quiz', name: 'Quiz Valentine', image: quizImg },
+  { id: 'quiz', name: 'Quiz Fun', image: quizImg },
 ];
 
 function Games() {
