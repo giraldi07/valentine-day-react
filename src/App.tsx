@@ -15,6 +15,8 @@ import DateInput2 from './pages/DateInput2';
 import DaysOfLove from './pages/DaysOfLove';
 import Loading from './components/loading/Loading1';
 import Fliping from './pages/Fliping';
+import Quiz from './pages/games/Quiz';
+import TekaTeki from './pages/games/TekaTeki';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -47,6 +49,9 @@ function AnimatedRoutes() {
           <Route path="/closing" element={<Closing />} />
           <Route path="/games" element={<Games />} />
           <Route path="/fliping" element={<Fliping />} />
+
+          <Route path="/games/tts" element={<TekaTeki />} />
+          <Route path="/games/quiz" element={<Quiz />} />
         </Routes>
       )}
     </AnimatePresence>
