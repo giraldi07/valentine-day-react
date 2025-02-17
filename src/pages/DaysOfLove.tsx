@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation, Navigate, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import lottie from 'lottie-react'
+import Lottie from 'lottie-react';
 import Countdown from '../components/Countdown';
 import { Heart } from 'lucide-react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
