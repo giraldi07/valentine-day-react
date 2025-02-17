@@ -89,15 +89,16 @@ const DateInput2: React.FC = () => {
                 x: isShaking ? [-5, 5, -5, 5, 0] : 0, // Efek getar horizontal
               }}
               transition={{ duration: 0.5, ease: 'easeInOut' }} // Transisi halus
-              className="max-w-4xl mx-auto w-full flex-grow flex flex-col z-50"
+              className="max-w-4xl mx-auto p-6 md:p-10 w-full flex-grow flex flex-col z-50 h-screen overflow-y-scroll"
             >
               {/* Judul */}
-              <div className="text-center mt-6 mb-6 sm:mb-8">
+              <div className="text-center mt-0 lg:mt-6 mb-6 sm:mb-8 z-40 relative">
+                {/* Teks Putih (Utama) */}
                 <motion.h2
                   initial={{ y: -20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 1 }}
-                  className="text-3xl md:text-4xl font-bold text-red-600 mb-0 text-center"
+                  className="text-3xl md:text-4xl font-bold text-white drop-shadow-md mb-0 text-center relative z-20"
                   style={{
                     fontFamily: 'Breathing',
                   }}
@@ -161,14 +162,14 @@ const DateInput2: React.FC = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
-              className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center"
+              className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md flex items-center justify-center"
             >
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
                 transition={{ duration: 0.5 }}
-                className="bg-pink-200 rounded-lg p-6 max-w-sm w-full"
+                className="bg-white/40 rounded-lg p-6 max-w-[90%] md:max-w-sm w-full"
               >
                 <ValentineCard />
                 <button

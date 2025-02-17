@@ -30,7 +30,7 @@ const Numpad: React.FC<NumpadProps> = ({ onDateSubmit, onInputChange, currentInp
   };
 
   return (
-    <div className="grid grid-cols-3 auto-cols-fr gap-2 sm:gap-4 p-2 sm:p-4 bg-pink-50 rounded-xl shadow-lg max-w-xs sm:max-w-sm md:max-w-md mx-auto">
+    <div className="grid grid-cols-3 auto-cols-fr gap-2 sm:gap-4 p-2 sm:p-4 bg-white/45 rounded-xl shadow-lg max-w-xs sm:max-w-sm md:max-w-md mx-auto">
       {/* Audio untuk efek suara */}
       <audio ref={audioRef} src={soundClick} preload="auto"></audio>
 
@@ -41,9 +41,9 @@ const Numpad: React.FC<NumpadProps> = ({ onDateSubmit, onInputChange, currentInp
           whileTap={{ scale: 0.9 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
           className={`
-            w-full h-12 sm:h-16 aspect-square rounded-lg font-bold min-w-0
+            w-full h-12 sm:h-16 md:h-20 lg:h-16 aspect-square rounded-lg font-bold min-w-0
             text-[clamp(1rem,2vw,1.5rem)] sm:text-xl 
-            ${btn === "-" ? "bg-pink-200 text-pink-700" : "bg-white text-pink-600"}
+            ${btn === "-" ? "bg-red-200 text-pink-700" : "bg-white text-pink-600"}
             shadow-md hover:shadow-lg transition-all duration-500
             active:bg-pink-100
           `}

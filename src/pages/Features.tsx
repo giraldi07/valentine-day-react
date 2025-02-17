@@ -59,7 +59,7 @@ function Features() {
           <motion.h1
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="text-4xl font-bold text-red-600 mb-3 text-center"
+            className="text-4xl font-bold text-white mb-3 text-center"
             style={{
               fontFamily: 'Breathing',
               transform: 'rotate(-5deg)',
@@ -74,7 +74,7 @@ function Features() {
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-xl sm:text-lg text-red-400 text-center mb-8"
+            className="text-xl sm:text-lg text-black text-center mb-8"
             style={{
               fontFamily: 'Montserrat, sans-serif',
             }}
