@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import TekaTekiData from '../../data/games/tekateki';
 
 function TekaTeki() {
   const navigate = useNavigate();
@@ -8,8 +9,8 @@ function TekaTeki() {
       {/* Container untuk iframe */}
       <div className="w-full max-w-4xl h-[70vh] relative">
         <iframe
-          src="https://crosswordlabs.com/embed/gloofie-tts"
-          title="Teka Teki Mini Game"
+          src={TekaTekiData.embedUrl}
+          title={TekaTekiData.title}
           className="w-full h-full border-4 border-black rounded-lg shadow-lg"
           style={{
             position: 'absolute',
