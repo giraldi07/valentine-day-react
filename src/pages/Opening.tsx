@@ -9,13 +9,20 @@ import LoveAnimation from '../assets/lottie-animations/red-line-love.json';
 import BgAnimImage from '../assets/images/gif/blink-blink.gif';
 import CurvedText from '../components/new-comp/CurvedText';
 import Lottie from 'lottie-react';
+import HeartSpread from '../components/new-comp/HeartSpread';
+import { useState } from 'react';
 
 function Opening() {
   const navigate = useNavigate();
+  const [showHearts, setShowHearts] = useState(false); // State untuk mengontrol tampilan HeartSpread
 
   const handleSlideSuccess = () => {
-    navigate('/date-input2');
+    setShowHearts(true); // Tampilkan efek HeartSpread
+    setTimeout(() => {
+      navigate('/date-input2'); // Navigasi setelah efek selesai
+    }, 2000); // Sesuaikan waktu dengan durasi efek HeartSpread
   };
+
 
   return (
     <motion.div
@@ -47,7 +54,7 @@ function Opening() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="z-50 w-full max-w-[80%] sm:max-w-[60%] md:max-w-[50%] lg:max-w-[40%]"
+          className="z-50 w-full mt-[-20vw] md:mt-[-10vw] max-w-[80%] sm:max-w-[60%] md:max-w-[50%] lg:max-w-[40%]"
         >
           <Lottie
             animationData={LoveAnimation}
@@ -85,14 +92,11 @@ function Opening() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1.5 }}
-          className="w-full max-w-[180px] sm:max-w-[200px] md:max-w-[220px] px-2 z-50"
+          className="w-full max-w-[180px] sm:max-w-[200px] md:max-w-[220px] mt-[-3vw] px-2 z-50"
         >
           <SlideToOpenButton onSlideSuccess={handleSlideSuccess} />
         </motion.div>
       </div>
-
-
-
 
       {/* Gambar Line Love L */}
       <motion.div
@@ -142,7 +146,8 @@ function Opening() {
         />
       </motion.div>
 
-
+      {/* Heart Spread Animation */}
+      <HeartSpread show={showHearts} />
     </motion.div>
   );
 }

@@ -37,7 +37,7 @@ const CurvedText = () => {
           fontFamily: "Lobster Two, cursive",
           fontSize: fontSize, // Ukuran font dinamis
           fontWeight: "bold",
-          fill: "#ee746e", // Warna teks
+          fill: "red", // Warna teks
         },
       }}
       textPathProps={{
