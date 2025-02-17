@@ -33,10 +33,10 @@ function Decorations() {
       ))}
 
       {/* Decorative Lines */}
-      <div className="absolute top-0 left-0 w-32 h-32 border-t-4 border-l-4 border-red-200/50 rounded-tl-3xl" />
-      <div className="absolute top-0 right-0 w-32 h-32 border-t-4 border-r-4 border-red-200/50 rounded-tr-3xl" />
-      <div className="absolute bottom-0 left-0 w-32 h-32 border-b-4 border-l-4 border-red-200/50 rounded-bl-3xl" />
-      <div className="absolute bottom-0 right-0 w-32 h-32 border-b-4 border-r-4 border-red-200/50 rounded-br-3xl" />
+      <div className="absolute top-0 left-0 w-32 h-32 border-t-4 border-l-4 border-gray-900/50 rounded-tl-3xl" />
+      <div className="absolute top-0 right-0 w-32 h-32 border-t-4 border-r-4 border-gray-900/50 rounded-tr-3xl" />
+      <div className="absolute bottom-0 left-0 w-32 h-32 border-b-4 border-l-4 border-gray-900/50 rounded-bl-3xl" />
+      <div className="absolute bottom-0 right-0 w-32 h-32 border-b-4 border-r-4 border-gray-900/50 rounded-br-3xl" />
     </div>
   );
 }
