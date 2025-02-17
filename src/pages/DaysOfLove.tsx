@@ -1,11 +1,12 @@
 import React from 'react';
 import { useLocation, Navigate, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import lottie from 'lottie-react'
 import Countdown from '../components/Countdown';
 import { Heart } from 'lucide-react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import BgAnimImage2 from '../assets/images/gif/flower.gif';
-
+import catAnimations from '../assets/images/lottie-animation/cat.json'
 
 const ribbonVariants = {
   initial: { scale: 10, opacity: 1, rotate: -30 },
@@ -95,10 +96,8 @@ const DaysOfLove: React.FC = () => {
           transition={{ delay: 2 }}
           className="w- mt-[-7%] max-w-[80%] sm:max-w-[60%] md:max-w-[50%] lg:max-w-[40%]"
       >
-         <DotLottieReact
-            src="/src/assets/lottie-animations/cat.lottie"
-            loop
-            autoplay
+         <Lottie
+            animationData={catAnimation}
             className="w-full max-h-[200px] sm:max-h-[250px] md:max-h-[300px] h-auto"
           />
       </motion.div>
