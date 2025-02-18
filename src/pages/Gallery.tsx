@@ -5,6 +5,8 @@ import pinIcon from '../assets/images/icons/pin.svg'; // Import ikon pin
 import LeftLineBottom from '../assets/images/crawl-line.svg';
 import RightLineBottom from '../assets/images/heart-outline.svg';
 import BgAnimImage from '../assets/images/gif/flower.gif';
+import clickSound from '../assets/audio/tap.mp3'; // Import file suara
+
 
 
 function Gallery() {
@@ -49,6 +51,9 @@ function Gallery() {
   };
 
   const handleBack = () => {
+    const audio = new Audio(clickSound);
+    audio.play();
+
     navigate('/features');
   };
 

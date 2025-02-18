@@ -6,13 +6,23 @@ import DotBackground from '../components/bg-animations/DotBackground';
 import pitaImage from '../assets/images/pita.svg';
 import data from '../data/love-letter/data.json'; // Import file JSON
 
+import clickSound from '../assets/audio/tap.mp3'; // Import file suara
+
+
 function LoveLetter() {
   const [isOpen, setIsOpen] = useState(false);
   const [showLetter, setShowLetter] = useState(true); // Untuk toggle antara letter dan foto
   const navigate = useNavigate();
 
+  // Fungsi untuk memutar suara klik
+  const playClickSound = () => {
+    const audio = new Audio(clickSound);
+    audio.play();
+  };
+
   // Fungsi untuk kembali ke halaman sebelumnya
   const handleBack = () => {
+    playClickSound(); // Memutar suara saat tombol kembali ditekan
     navigate('/features'); // Kembali ke halaman sebelumnya
   };
 
@@ -38,7 +48,10 @@ function LoveLetter() {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               className="bg-yellow-50 rounded-lg shadow-xl p-8 text-center cursor-pointer border border-gray-200"
-              onClick={() => setIsOpen(true)}
+              onClick={() => {
+                setIsOpen(true);
+                playClickSound(); // Memutar suara saat card letter ditekan
+              }}
               style={{ backfaceVisibility: 'hidden' }}
             >
               <Heart className="w-16 h-16 text-red-500 mx-auto mb-4" />
@@ -89,10 +102,12 @@ function LoveLetter() {
                 </button>
 
                 <button
-                  onClick={() => setShowLetter(false)} // Switch ke foto
+                  onClick={() => {
+                    playClickSound(); // Pemanggilan suara saat klik tombol "See Photo"
+                    setShowLetter(false);
+                  }} // Switch ke foto
                   className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-md font-semibold shadow-lg transform hover:scale-105 transition-all"
                   style={{ fontFamily: "Lobster Two, cursive" }}
-
                 >
                   See Photo
                 </button>
@@ -114,7 +129,10 @@ function LoveLetter() {
             {/* Tombol Back */}
             <div className="absolute bottom-4 w-full flex justify-center">
               <button
-                onClick={() => setShowLetter(true)} // Switch kembali ke letter
+                onClick={() => {
+                  setShowLetter(true);
+                  playClickSound(); // Pemanggilan suara saat klik tombol "Back"
+                }} // Switch kembali ke letter
                 className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 sm:px-8 sm:py-3 rounded-md font-semibold shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out"
                 style={{ fontFamily: "Lobster Two, cursive" }}
               >
