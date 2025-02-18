@@ -7,6 +7,8 @@ import Decorations from '../components/Decorations';
 import TimeCard from '../components/new-comp/TimeCard';
 import BgAnimImage from '../assets/images/gif/blink-blink.gif';
 import featuresIcons from '../assets/images/icons/biglove.svg';
+import clickSound from '../assets/audio/tap.mp3'; // Import file suara
+
 
 const Features: React.FC = () => {
   const navigate = useNavigate();
@@ -18,6 +20,13 @@ const Features: React.FC = () => {
 
   const toggleFeatures = () => {
     setShowFeatures(!showFeatures);
+    playClickSound(); // Panggil fungsi untuk memutar suara saat ikon diklik
+  };
+
+  // Fungsi untuk memutar suara
+  const playClickSound = () => {
+    const audio = new Audio(clickSound);
+    audio.play();
   };
 
   // Konversi string tanggal ke objek Date
@@ -115,7 +124,10 @@ const Features: React.FC = () => {
                   y: showFeatures ? Math.sin((index * 2 * Math.PI) / features.length) * 120 : 0,
                 }}
                 transition={{ delay: index * 0.1, type: 'spring', stiffness: 100 }}
-                onClick={() => navigate(feature.path)}
+                onClick={() => {
+                  playClickSound(); // Panggil fungsi untuk memutar suara
+                  navigate(feature.path);
+                }}
                 className="flex flex-col items-center cursor-pointer absolute z-30"
               >
                 <motion.div
