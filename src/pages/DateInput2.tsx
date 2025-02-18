@@ -7,6 +7,8 @@ import SubmitButton from '../components/new-comp/SubmitButton';
 import ValentineCard from '../components/new-comp/ValentineCard';
 import HeartSpread from '../components/new-comp/HeartSpread';
 import BgAnimImage2 from '../assets/images/gif/flower.gif';
+import FrameLeft from '../assets/images/frame-left.svg'; // Import frame kiri
+import FrameRight from '../assets/images/frame-right.svg'; // Import frame kanan
 
 // Import file suara
 import wrongSound from '../assets/audio/wrong.mp3';
@@ -61,6 +63,19 @@ const DateInput2: React.FC = () => {
     <FrameSlide direction="down" duration={1} perspective={1500}>
 
       <div className={`min-h-screen bg-gradient-radial from-gray-50 via-gray-300 to-gray-500 p-4 sm:p-6 md:p-8 flex flex-col ${isError ? 'error-effect' : ''}`}>
+        {/* Frame SVG - Pojok Kiri Bawah */}
+        <img
+          src={FrameLeft}
+          alt="Frame Left"
+          className="fixed left-[-10vw] bottom-[-20vw] w-[50vw] z-40"
+        />
+
+        {/* Frame SVG - Pojok Kanan Atas */}
+        <img
+          src={FrameRight}
+          alt="Frame Right"
+          className="fixed right-[-10vw] top-[-20vw] w-[50vw] z-40"
+        />
 
         {/* Background Animasi */}
         <motion.div
