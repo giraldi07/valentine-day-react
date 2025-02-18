@@ -8,6 +8,8 @@ import ImageBackground from '../assets/images/paper.svg';
 import RightLineBottom from '../assets/images/heart-outline.svg';
 import LeftFrame from '../assets/images/left-frame.svg';
 import RightFrame from '../assets/images/left-frame.svg';
+import clickSound from '../assets/audio/tap.mp3';  // Suara untuk jawaban benar
+
 
 interface TodoItem {
   id: number;
@@ -46,8 +48,15 @@ function TodoList() {
     );
   };
 
+  // Fungsi untuk memutar suara klik
+  const playClickSound = () => {
+    const audio = new Audio(clickSound);
+    audio.play();
+  };
+
   // Fungsi untuk menyimpan data
   const handleSave = () => {
+    playClickSound();
     setIsLoading(true); // Tampilkan loading
     setTimeout(() => {
       setIsLoading(false); // Sembunyikan loading
@@ -60,6 +69,7 @@ function TodoList() {
 
   // Fungsi untuk kembali ke halaman sebelumnya
   const handleBack = () => {
+    playClickSound();
     navigate('/features'); // Kembali ke halaman sebelumnya
   };
 
