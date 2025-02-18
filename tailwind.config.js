@@ -21,6 +21,7 @@ export default {
         'montserrat': ['Montserrat', 'sans-serif'],
         'league-spartan': ['League Spartan'],
         'breathing-personal-use-400': ['Breathing'],
+        'wedges': ['Wedges'],
       }
     },
   },

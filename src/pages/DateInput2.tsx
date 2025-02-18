@@ -94,17 +94,19 @@ const DateInput2: React.FC = () => {
               {/* Judul */}
               <div className="text-center mt-0 lg:mt-6 mb-6 sm:mb-8 z-40 relative">
                 {/* Teks Putih (Utama) */}
-                <motion.h2
+                <motion.h1
                   initial={{ y: -20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 1 }}
-                  className="text-3xl md:text-4xl font-bold text-white drop-shadow-md mb-0 text-center relative z-20"
+                  className="text-3xl md:text-4xl font-bold text-white mb-0 text-center relative z-30"
                   style={{
-                    fontFamily: 'Breathing',
+                    fontFamily: 'Wedges',
+                    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)', // Menambahkan efek bayangan untuk dimensi
+                    letterSpacing: '0.1em', // Mengatur jarak antar huruf
                   }}
                 >
                   Tanggal Jadian Kita?
-                </motion.h2>
+                </motion.h1>
               </div>
 
               {/* Input Tanggal */}

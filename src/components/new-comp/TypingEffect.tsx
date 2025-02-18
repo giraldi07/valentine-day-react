@@ -6,6 +6,8 @@ interface TypingEffectProps {
   color?: string; // Warna teks (opsional)
   fontFamily?: string; // Tipe font (opsional)
   fontWeight?: string; // Ketebalan font (opsional)
+  fontSize?: number; // ukuran font
+  letterSpacing?: string; // jarak antar huruf
 }
 
 const TypingEffect: React.FC<TypingEffectProps> = ({
@@ -14,6 +16,8 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
   color,
   fontFamily,
   fontWeight,
+  fontSize,
+  letterSpacing,
 }) => {
   const [displayText, setDisplayText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -46,6 +50,9 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
         color: color || "inherit", // Gunakan warna dari props atau warna default
         fontFamily: fontFamily || "inherit", // Gunakan font dari props atau font default
         fontWeight: fontWeight || "normal", // Gunakan ketebalan font dari props atau normal
+        fontSize: fontSize || "inherit",
+        letterSpacing: letterSpacing || "normal",
+        textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
       }}
     >
       {displayText}

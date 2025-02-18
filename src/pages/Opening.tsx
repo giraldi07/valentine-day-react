@@ -53,10 +53,14 @@ function Opening() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className={`text-center mt-2 mb-4 md:mb-8 px-4 z-50 ${OpeningData.pageTitle.color}`}
-          style={{ fontFamily: OpeningData.pageTitle.fontFamily }}
+          className={`text-center mt-2 mb-4 md:mb-8 px-4 z-50`}
         >
-          <CurvedText text={OpeningData.pageTitle.text} />
+          <CurvedText
+            text={OpeningData.pageTitle.text} // Menggunakan teks dari `pageTitle`
+            fontFamily={OpeningData.pageTitle.fontFamily} // Menggunakan fontFamily dari `pageTitle`
+            color={OpeningData.pageTitle.color} // Menggunakan color dari `pageTitle`
+            fontWeight={OpeningData.pageTitle.fontWeight} // Anda bisa mengirim fontWeight langsung atau dari data
+          />
         </motion.h1>
 
         {/* Teks Typing Effect */}
@@ -69,6 +73,8 @@ function Opening() {
             height: '100px',
             fontFamily: OpeningData.typingEffect.fontFamily,
             fontWeight: OpeningData.typingEffect.fontWeight,
+            fontSize: OpeningData.typingEffect.fontSize,
+            letterSpacing: OpeningData.typingEffect.letterSpacing,
           }}
         >
           <TypingEffect
@@ -77,6 +83,7 @@ function Opening() {
             color={OpeningData.typingEffect.color}
             fontFamily={OpeningData.typingEffect.fontFamily}
             fontWeight={OpeningData.typingEffect.fontWeight}
+            letterSpacing={OpeningData.typingEffect.letterSpacing}
           />
         </motion.div>
 

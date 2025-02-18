@@ -8,24 +8,27 @@ const OpeningData = {
   // Data untuk judul halaman
   pageTitle: {
     text: "This is For", // Judul halaman
-    fontFamily: "League Spartan", // Tipe font judul
-    color: "text-gray-800", // Warna judul
+    fontFamily: "Lobster Two", // Tipe font judul
+    color: "white", // Warna judul
+    fontWeight: "semi-bold", // Tebal tipisnya text
   },
 
   // Data untuk teks efek ketik
   typingEffect: {
-    text: "KELLIN QUEEN", // Teks yang akan ditampilkan
+    text: "Input Nama Disini", // Teks yang akan ditampilkan
     speed: 100, // Kecepatan efek ketik (ms per karakter)
-    color: "text-blue-500", // Warna teks
+    color: "#769fbb", // Warna teks
     fontFamily: "League Spartan",
     fontWeight: "bold",
+    fontSize: 38,
+    letterSpacing: "4px",
   },
 
   // Data untuk SlideButton
   slideButton: {
     text: {
       open: "Terbuka!", // Teks saat tombol terbuka
-      closed: "---->Slide disini!", // Teks saat tombol tertutup
+      closed: "---->Slide disinI!", // Teks saat tombol tertutup
     },
     className: "text-gray-700 font-semibold px-4 text-sm sm:text-lg transition-opacity duration-300", // Kelas Tailwind untuk gaya teks
   },
