@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { features } from '../data/features';
 import PageTransition from '../components/PageTransition';
@@ -8,20 +8,32 @@ import TimeCard from '../components/new-comp/TimeCard';
 import BgAnimImage from '../assets/images/gif/blink-blink.gif';
 import featuresIcons from '../assets/images/icons/biglove.svg';
 
-function Features() {
+const Features: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const startDate = location.state?.date || "10-02-2025"; // Default jika tidak ada state
   const [showFeatures, setShowFeatures] = useState(false);
+
+  const [selectedDate] = useState(startDate);
 
   const toggleFeatures = () => {
     setShowFeatures(!showFeatures);
   };
 
-  const [timeSince] = useState({
-    days: 5,
-    hours: 12,
-    minutes: 30,
-    seconds: 45,
-  });
+  // Konversi string tanggal ke objek Date
+  const [day, month, year] = startDate.split("-").map(Number);
+  const startDateObj = new Date(year, month - 1, day); // Bulan dikurangi 1 karena di JS bulan dimulai dari 0
+
+  // Hitung selisih waktu sejak tanggal jadian
+  const now = new Date();
+  const diffInSeconds = Math.floor((now.getTime() - startDateObj.getTime()) / 1000);
+  const time = {
+    days: Math.floor(diffInSeconds / (60 * 60 * 24)),
+    hours: Math.floor((diffInSeconds % (60 * 60 * 24)) / (60 * 60)),
+    minutes: Math.floor((diffInSeconds % (60 * 60)) / 60),
+    seconds: diffInSeconds % 60,
+  };
+
 
   return (
     <PageTransition>
@@ -56,31 +68,22 @@ function Features() {
         )}
 
         <div className="relative max-w-4xl mx-auto mt-10 pt-8">
+
+          {/* Teks Putih (Utama) */}
           <motion.h1
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="text-4xl font-bold text-white mb-3 text-center"
+            transition={{ delay: 1 }}
+            className="text-3xl md:text-4xl font-bold text-white mb-10 text-center relative z-10"
             style={{
-              fontFamily: 'Breathing',
-              transform: 'rotate(-5deg)',
-              letterSpacing: '0.1em',
-              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)',
+                fontFamily: 'Breathing',
+                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)', // Menambahkan efek bayangan untuk dimensi
+                letterSpacing: '0.1em', // Mengatur jarak antar huruf
             }}
           >
-            Welcome
+              Days Of Love
           </motion.h1>
-
-          <motion.p
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-xl sm:text-lg text-black text-center mb-8"
-            style={{
-              fontFamily: 'Montserrat, sans-serif',
-            }}
-          >
-            Let's explore<br></br>our love journey together
-          </motion.p>
+           
 
           <div className="flex justify-center z-30 items-center gap-6 md:gap-8 flex-wrap relative">
             {/* Ikon Utama (Love Fill) */}
@@ -90,7 +93,7 @@ function Features() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mb-2">
+              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mb-2 z-30">
                 <img
                   src={featuresIcons} // Menggunakan ikon hati dari data
                   alt="Heart Icon"
@@ -134,10 +137,24 @@ function Features() {
             ))}
           </div>
 
-          {/* Countdown Timer */}
-          <div className="mt-4" style={{ fontFamily: 'Lobster Two, cursive' }}>
-            <TimeCard time={timeSince} title="Sudah selama ini ya!" style="bg-pink-300 text-red-500" />
-          </div>
+          {/* Timer Card */}
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="mt-4"
+            style={{
+              fontFamily: 'Lobster Two',
+            }}
+          >
+            <TimeCard 
+              time={time} 
+              title="Sudah Bersama" 
+              style="text-gray-800"
+              startDate={selectedDate} // Teruskan tanggal awal ke TimeCard
+            />
+          </motion.div>
+
         </div>
       </div>
     </PageTransition>

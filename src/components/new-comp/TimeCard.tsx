@@ -10,9 +10,19 @@ interface TimeCardProps {
   };
   title: string;
   style?: string;
+  startDate?: string; // Tambahkan prop untuk tanggal awal
 }
 
-const TimeCard: React.FC<TimeCardProps> = ({ time, title, style }) => {
+const TimeCard: React.FC<TimeCardProps> = ({ time, title, style, startDate }) => {
+  // Format tanggal awal (jika ada)
+  const formattedDate = startDate
+    ? new Date(startDate.split('-').reverse().join('-')).toLocaleDateString('id-ID', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+      })
+    : '';
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -30,9 +40,12 @@ const TimeCard: React.FC<TimeCardProps> = ({ time, title, style }) => {
       <h3 className="text-center text-2xl sm:text-3xl font-semibold text-pink-700 drop-shadow-md">
         {title}
       </h3>
-      <p className="text-center text-sm sm:text-base text-gray-600 mt-2 italic">
-        Sejak 03 Juli 2023 💕✨
-      </p>
+      {/* Tanggal Awal */}
+      {formattedDate && (
+        <p className="text-center text-sm sm:text-base text-gray-600 mt-2 italic">
+          Sejak {formattedDate} 💕✨
+        </p>
+      )}
 
       {/* Grid Waktu */}
       <div className="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">

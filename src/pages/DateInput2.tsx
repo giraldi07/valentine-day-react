@@ -16,7 +16,7 @@ import wrongSound from '../assets/audio/wrong.mp3';
 import successSound from '../assets/audio/success.mp3';
 import FrameSlide from '../components/new-comp/FrameSlide';
 
-const CORRECT_DATE = '10-02-2025';
+const CORRECT_DATE = '17-02-2025';
 
 const DateInput2: React.FC = () => {
   const [currentInput, setCurrentInput] = useState('');
@@ -56,9 +56,10 @@ const DateInput2: React.FC = () => {
 
   const handleContinue = () => {
     navigate('/days-of-love', { 
-      state: { date: currentInput },
+      state: { date: CORRECT_DATE }, // Kirim tanggal ke halaman tujuan
     });
   };
+
 
   return (
     <FrameSlide direction="down" duration={1} perspective={1500}>
