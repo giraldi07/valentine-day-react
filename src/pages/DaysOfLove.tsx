@@ -8,8 +8,10 @@ import catAnimation from '../assets/lottie-animations/cat.json';
 import FrameSlide from '../components/new-comp/FrameSlide';
 import Frame2Left from '../assets/images/frame2-left.svg'; // Import frame kiri
 import Frame2Right from '../assets/images/frame2-right.svg';
-
 import TimeCard from "../components/new-comp/TimeCard";
+
+import clickSound from '../assets/audio/tap.mp3'; // Import file suara
+
 
 const DaysOfLove: React.FC = () => {
   const location = useLocation();
@@ -33,6 +35,11 @@ const DaysOfLove: React.FC = () => {
     seconds: diffInSeconds % 60,
   };
 
+  // Fungsi efek suara klik
+  const playClickSound = () => {
+    const audio = new Audio(clickSound);
+    audio.play();
+  }
 
   return (
     <FrameSlide direction="down" duration={1} perspective={1500}>
@@ -138,6 +145,7 @@ const DaysOfLove: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => {
+                playClickSound();
                 setShowCard(false); // Sembunyikan kartu terlebih dahulu
                 setTimeout(() => {
                   navigate('/features', { state: { date: startDate } }); // Pindah halaman setelah animasi selesai
