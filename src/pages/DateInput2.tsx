@@ -15,6 +15,8 @@ import LoveDenyut from '../assets/images/gif/love-denyut.gif';
 import wrongSound from '../assets/audio/wrong.mp3';
 import successSound from '../assets/audio/success.mp3';
 import FrameSlide from '../components/new-comp/FrameSlide';
+import clickSound from '../assets/audio/tap.mp3'; // Import file suara
+
 
 const CORRECT_DATE = '17-02-2025';
 
@@ -55,6 +57,7 @@ const DateInput2: React.FC = () => {
   };
 
   const handleContinue = () => {
+    new Audio(clickSound).play(); // Play suara saat tombol di-click
     navigate('/days-of-love', { 
       state: { date: CORRECT_DATE }, // Kirim tanggal ke halaman tujuan
     });
