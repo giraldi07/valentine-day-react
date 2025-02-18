@@ -8,7 +8,6 @@ import PhotoCard from './pages/PhotoCard';
 import TodoList from './pages/TodoList';
 import LoveLetter from './pages/LoveLetter';
 import Closing from './pages/Closing';
-import Music from './pages/Music';
 import { AnimatePresence } from 'framer-motion';
 import Games from './pages/Games';
 import DateInput2 from './pages/DateInput2';
@@ -17,6 +16,7 @@ import Loading from './components/loading/Loading1';
 import Fliping from './pages/Fliping';
 import Quiz from './pages/games/Quiz';
 import TekaTeki from './pages/games/TekaTeki';
+import MusicBackground from './components/new-comp/MusicBackground';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -43,7 +43,6 @@ function AnimatedRoutes() {
           <Route path="/features" element={<Features />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/photo-card" element={<PhotoCard />} />
-          <Route path="/music" element={<Music />} />
           <Route path="/todo-list" element={<TodoList />} />
           <Route path="/love-letter" element={<LoveLetter />} />
           <Route path="/closing" element={<Closing />} />
@@ -61,6 +60,7 @@ function AnimatedRoutes() {
 function App() {
   return (
     <Router>
+      <MusicBackground />
       <AnimatedRoutes />
     </Router>
   );

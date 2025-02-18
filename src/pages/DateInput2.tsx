@@ -119,7 +119,7 @@ const DateInput2: React.FC = () => {
                 x: isShaking ? [-5, 5, -5, 5, 0] : 0, // Efek getar horizontal
               }}
               transition={{ duration: 0.5, ease: 'easeInOut' }} // Transisi halus
-              className="max-w-4xl mx-auto p-10 md:p-12 lg:p-2 w-full flex-grow flex flex-col z-50 h-screen overflow-y-auto"
+              className="max-w-4xl mx-auto p-10 md:p-12 lg:p-2 w-full flex-grow flex flex-col z-40 h-screen overflow-y-auto"
             >
               {/* Judul */}
               <div className="text-center mt-0 lg:mt-6 mb-6 sm:mb-8 z-40 relative">
