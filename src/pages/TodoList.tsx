@@ -166,7 +166,10 @@ function TodoList() {
                 <motion.div
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  onClick={() => toggleActivity(activity.id)}
+                  onClick={() => {
+                    toggleActivity(activity.id);
+                    playClickSound();
+                  }}
                   className="cursor-pointer"
                 >
                   {activity.completed ? (
