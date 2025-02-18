@@ -12,8 +12,11 @@ function Quiz() {
   const [score, setScore] = useState(0);
   const [showResult, setShowResult] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // State untuk animasi loading
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null); // State untuk melacak jawaban yang dipilih
 
   const handleAnswer = (selectedAnswer: string) => {
+    setSelectedAnswer(selectedAnswer); // Set jawaban yang dipilih
+
     if (selectedAnswer === quizData[currentQuestion].answer) {
       setScore(score + 1);
     }
@@ -22,6 +25,7 @@ function Quiz() {
       // Animasi perpindahan pertanyaan
       setTimeout(() => {
         setCurrentQuestion(currentQuestion + 1);
+        setSelectedAnswer(null); // Reset jawaban yang dipilih untuk pertanyaan berikutnya
       }, 300); // Delay untuk animasi
     } else {
       // Animasi loading sebelum menampilkan hasil
@@ -104,7 +108,13 @@ function Quiz() {
                     }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-6 py-3 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors text-lg font-medium shadow-sm"
+                    className={`px-6 py-3 rounded-lg transition-colors text-lg font-medium shadow-sm ${
+                      selectedAnswer === option
+                        ? option === quizData[currentQuestion].answer
+                          ? 'bg-green-500 text-white' // Warna hijau untuk jawaban benar
+                          : 'bg-red-500 text-white' // Warna merah untuk jawaban salah
+                        : 'bg-blue-50 text-blue-600 hover:bg-blue-100' // Warna default
+                    }`}
                   >
                     {option}
                   </motion.button>
