@@ -137,6 +137,7 @@ const DateInput2: React.FC = () => {
                 >
                   Tanggal Jadian Kita?
                 </motion.h1>
+                <p className="text-gray-600 font-bold italic">Masukan data 17-02-2025</p>
               </div>
 
               {/* Input Tanggal */}
