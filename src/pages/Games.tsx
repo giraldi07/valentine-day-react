@@ -3,10 +3,21 @@ import { motion } from 'framer-motion';
 import PageTransition from '../components/PageTransition';
 import GamesData from '../data/pages-data/features/games'; // Impor data dari file terpisah
 
+import clickSound from '../assets/audio/tap.mp3'; // Import file suara
+
+
 function Games() {
   const navigate = useNavigate();
 
+  // Fungsi untuk memutar suara klik
+  const playClickSound = () => {
+    const audio = new Audio(clickSound);
+    audio.play();
+  };
+
   const handleGameSelection = (gameId: string) => {
+    playClickSound(); // Memutar suara saat tombol kembali ditekan
+
     // Navigasi ke halaman game yang dipilih
     navigate(`/games/${gameId}`);
   };
@@ -57,7 +68,10 @@ function Games() {
 
           {/* Tombol kembali */}
           <button
-            onClick={() => navigate('/features')}
+            onClick={() => {
+              navigate('/features');
+              playClickSound();
+            }}
             className={`mt-6 px-6 py-2 ${GamesData.backButton.color} text-white rounded-lg ${GamesData.backButton.hoverColor} transition-colors`}
           >
             {GamesData.backButton.text}

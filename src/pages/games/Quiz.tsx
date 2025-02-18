@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { quizData } from '../../data/games/quiz'; // Impor data quiz
 import { motion, AnimatePresence } from 'framer-motion'; // Impor framer-motion untuk animasi
 
+import clickSound from '../../assets/audio/tap.mp3';  // Suara untuk jawaban benar
+import wrongSound from '../../assets/audio/wrong.mp3';  // Suara untuk jawaban salah
+
 function Quiz() {
   const navigate = useNavigate();
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -28,6 +31,18 @@ function Quiz() {
         setShowResult(true);
       }, 1500); // Simulasi loading 1.5 detik
     }
+  };
+
+  // Fungsi untuk memutar suara klik
+  const playClickSound = () => {
+    const audio = new Audio(clickSound);
+    audio.play();
+  };
+  
+  // Fungsi untuk memutar suara
+  const playSound = (soundFile: string | undefined) => {
+    const audio = new Audio(soundFile);
+    audio.play();
   };
 
   // Hitung progress kuis
@@ -78,7 +93,15 @@ function Quiz() {
                 {quizData[currentQuestion].options.map((option, index) => (
                   <motion.button
                     key={index}
-                    onClick={() => handleAnswer(option)}
+                    onClick={() => {
+                      handleAnswer(option); // Fungsi untuk menangani jawaban
+                      // Pilih suara berdasarkan jawaban
+                      if (option === quizData[currentQuestion].answer) {
+                        playSound(clickSound);  // Suara untuk jawaban benar
+                      } else {
+                        playSound(wrongSound);  // Suara untuk jawaban salah
+                      }
+                    }}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="px-6 py-3 bg-blue-50 text-blue-600 rounded-lg hover:bg-blue-100 transition-colors text-lg font-medium shadow-sm"
@@ -88,7 +111,10 @@ function Quiz() {
                 ))}
               </div>
               <button
-                onClick={() => navigate('/games')}
+                onClick={() => {
+                  navigate('/games');
+                  playClickSound();
+                }}
                 className="mt-6 px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors text-lg font-semibold shadow-md"
               >
                 Batalkan Kuis

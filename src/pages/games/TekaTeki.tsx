@@ -1,8 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import TekaTekiData from '../../data/games/tekateki';
 
+import clickSound from '../../assets/audio/tap.mp3'; // Import file suara
+
 function TekaTeki() {
   const navigate = useNavigate();
+
+  // Fungsi untuk memutar suara klik
+  const playClickSound = () => {
+    const audio = new Audio(clickSound);
+    audio.play();
+  };
 
   return (
     <div className="min-h-screen bg-gradient-radial from-gray-50 via-gray-300 to-gray-500 p-6 flex flex-col items-center justify-center">
@@ -23,7 +31,10 @@ function TekaTeki() {
 
       {/* Tombol Kembali */}
       <button
-        onClick={() => navigate('/games')}
+        onClick={() => {
+          navigate('/games');
+          playClickSound(); // Memutar suara klik
+        }}
         className="mt-8 px-8 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors text-lg font-semibold shadow-md"
       >
         Kembali ke Pilihan Game
