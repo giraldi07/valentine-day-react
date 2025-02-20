@@ -71,7 +71,7 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
         fontWeight: fontWeight || "normal",
         fontSize: responsiveFontSize, // Gunakan fontSize responsif
         letterSpacing: letterSpacing || "normal",
-        textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+        textShadow: "2px 2px 0px rgba(0, 0, 0, 0.8)",
       }}
     >
       {displayText}
