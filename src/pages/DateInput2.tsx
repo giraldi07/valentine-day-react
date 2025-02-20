@@ -62,7 +62,7 @@ const DateInput2: React.FC = () => {
 
   return (
     <FrameSlide direction="down" duration={1} perspective={1500}>
-      <div className={`min-h-screen w-full bg-gradient-radial from-gray-50 via-gray-300 to-gray-500 p-4 sm:p-6 md:p-8 flex flex-col ${isError ? 'error-effect' : ''}`}>
+      <div className={`min-h-screen h-full w-full bg-gradient-radial from-gray-50 via-gray-300 to-gray-500 p-4 sm:p-6 md:p-8 flex flex-col ${isError ? 'error-effect' : ''}`}>
         {/* Animasi Love Denyut */}
         <img src={LoveDenyut} alt="Love Denyut" className="absolute z-0 opacity-50 blur-md w-[40vw]" />
         <img src={FrameLeft} alt="Frame Left" className="fixed left-[-10vw] bottom-[-20vw] w-[50vw] z-50 pointer-events-none" />
@@ -89,8 +89,9 @@ const DateInput2: React.FC = () => {
             x: isShaking ? [-5, 5, -5, 5, 0] : 0, // Efek getar horizontal
           }}
           transition={{ duration: 0.5 }}
-          className="max-w-4xl mx-auto p-10 md:p-12 lg:p-2 w-full flex-grow flex flex-col z-40 overflow-y-auto overscroll-contain"
+          className="max-w-4xl mx-auto p-10 md:p-12 lg:p-2 w-full min-h-screen flex-grow flex flex-col z-40 overflow-y-auto overscroll-contain"
         >
+
           {/* Judul */}
           <div className="text-center mt-0 lg:mt-6 mb-6 sm:mb-8 z-40 relative">
             <motion.h1
@@ -139,6 +140,8 @@ const DateInput2: React.FC = () => {
               <Numpad onDateSubmit={() => {}} onInputChange={handleInputChange} currentInput={currentInput} />
             </div>
           </div>
+
+
 
           {/* Submit Button */}
           <div className="w-full max-w-md mx-auto flex justify-center mt-12">
