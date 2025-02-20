@@ -144,7 +144,7 @@ const DateInput2: React.FC = () => {
 
 
           {/* Submit Button */}
-          <div className="w-full max-w-md mx-auto flex justify-center mt-12">
+          <div className="w-full max-w-md mx-auto flex justify-center mt-12 mb-12">
             <SubmitButton isEnabled={currentInput.length === 10} onClick={handleSubmit} />
           </div>
         </motion.div>
