@@ -28,10 +28,13 @@ const OpeningData = {
   slideButton: {
     text: {
       open: "Terbuka!", // Teks saat tombol terbuka
-      closed: "---->Slide disinI!", // Teks saat tombol tertutup
+      closed: "SLIDE", // Teks saat tombol tertutup
     },
-    className: "text-gray-700 font-semibold px-4 text-sm sm:text-lg transition-opacity duration-300", // Kelas Tailwind untuk gaya teks
+    className:
+      "absolute inset-0 flex items-center justify-center pointer-events-none text-gray-700 font-semibold text-sm sm:text-base md:text-lg transition-opacity duration-300 pl-2 sm:pl-3 md:pl-4",
   },
+
+
 
   // Data untuk latar belakang
   background: {

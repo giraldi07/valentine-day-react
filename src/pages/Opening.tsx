@@ -92,10 +92,15 @@ function Opening() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1.5 }}
-          className="w-full max-w-[150px] sm:max-w-[200px] md:max-w-[220px] mt-[-10vw] md:mt-[-3vw] px-[-2] md:px-2 z-50"
+          className="w-full max-w-[150px] sm:max-w-[160px] md:max-w-[180px] mt-[-8vw] md:mt-[-2.5vw] px-2 md:px-3 z-50"
         >
-          <SlideToOpenButton isOpen={isOpen} onSlideSuccess={handleSlideSuccess} onSlideChange={handleSlideChange} />
+          <SlideToOpenButton
+            isOpen={isOpen}
+            onSlideSuccess={handleSlideSuccess}
+            onSlideChange={handleSlideChange}
+          />
         </motion.div>
+
       </div>
 
       {/* Gambar Line Love L */}
