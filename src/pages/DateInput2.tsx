@@ -89,7 +89,7 @@ const DateInput2: React.FC = () => {
             x: isShaking ? [-5, 5, -5, 5, 0] : 0, // Efek getar horizontal
           }}
           transition={{ duration: 0.5 }}
-          className="max-w-4xl mx-auto p-10 md:p-12 lg:p-2 w-full min-h-screen h-full flex-grow flex flex-col z-40 overflow-y-auto overscroll-contain"
+          className="max-w-4xl mx-auto p-10 md:p-12 lg:p-2 w-full min-h-screen flex-grow flex flex-col z-40 overflow-y-auto overscroll-contain"
         >
 
           {/* Judul */}
