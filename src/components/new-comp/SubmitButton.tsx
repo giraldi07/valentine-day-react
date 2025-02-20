@@ -14,7 +14,6 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ isEnabled, onClick }) => {
     if (isEnabled) {
       setIsClicked(true);
       onClick();
-      setTimeout(() => setIsClicked(false), 300); // Reset animasi setelah 300ms
     }
   };
 
@@ -22,7 +21,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ isEnabled, onClick }) => {
     <motion.button
       onClick={handleClick}
       className={`
-        relative w-full max-w-[200px] h-14 rounded-full 
+        relative w-full max-w-[150px] h-14 rounded-full 
         flex items-center px-4 py-2 text-base sm:text-lg
         transition-colors duration-300
         ${isEnabled 
@@ -38,10 +37,9 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ isEnabled, onClick }) => {
           flex items-center justify-center
           shadow-md
         `}
-        animate={{
-          x: isClicked ? '160%' : '0%'
-        }}
-        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        animate={isClicked ? { x: ['0%', '160%', '0%'] } : { x: '0%' }} // Bergulir ke kanan lalu kembali ke kiri
+        transition={{ duration: 0.6, ease: "easeInOut" }} // Durasi lebih smooth
+        onAnimationComplete={() => setIsClicked(false)} // Reset setelah animasi selesai
       >
         <Heart
           className={`w-6 h-6 ${isEnabled ? 'text-pink-500' : 'text-gray-400'}`}
@@ -49,7 +47,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ isEnabled, onClick }) => {
         />
       </motion.div>
       <span className={`
-        absolute left-1/2 -translate-x-1/2
+        absolute left-24 -translate-x-1/2
         text-white font-semibold
         ${isEnabled ? 'opacity-100' : 'opacity-50'}
       `}>

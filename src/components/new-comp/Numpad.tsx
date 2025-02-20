@@ -10,41 +10,44 @@ const Numpad: React.FC<NumpadProps> = ({ onDateSubmit, onInputChange, currentInp
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const handleClick = (value: string) => {
+    // Putar suara tanpa blocking eksekusi lain
     if (audioRef.current) {
       audioRef.current.currentTime = 0;
-      audioRef.current.play();
+      audioRef.current.play().catch(() => {});
     }
 
-    if (value === "⌫") {
-      onInputChange(currentInput.slice(0, -1));
-    } else {
-      if (currentInput.length < 10) {
-        const newInput = currentInput + value;
-        onInputChange(newInput);
+    requestAnimationFrame(() => {
+      if (value === "⌫") {
+        onInputChange(currentInput.slice(0, -1));
+      } else {
+        if (currentInput.length < 10) {
+          const newInput = currentInput + value;
+          onInputChange(newInput);
 
-        if (newInput.length === 10) {
-          onDateSubmit(newInput);
+          if (newInput.length === 10) {
+            onDateSubmit(newInput);
+          }
         }
       }
-    }
+    });
   };
 
   return (
-    <div className="grid grid-cols-3 auto-cols-fr gap-2 sm:gap-4 p-2 sm:p-4 bg-white/45 rounded-xl shadow-lg max-w-xs sm:max-w-sm md:max-w-md mx-auto">
+    <div className="relative w-full grid grid-cols-3 p-3 gap-3 max-w-xs mx-auto h-[280px] bg-gray-200 rounded-xl shadow-lg overflow-hidden">
       {/* Audio untuk efek suara */}
       <audio ref={audioRef} src={soundClick} preload="auto"></audio>
 
       {buttons.map((btn) => (
         <motion.button
           key={btn}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          whileHover={{ scale: 1.03 }} // Hover lebih responsif
+          whileTap={{ scale: 0.95 }} // Tap lebih cepat
+          transition={{ duration: 0.05, ease: "easeOut" }} // Animasi tap lebih instan
           className={`
-            w-full h-12 sm:h-16 md:h-20 lg:h-16 aspect-square rounded-lg font-bold min-w-0
-            text-[clamp(1rem,2vw,1.5rem)] sm:text-xl 
+            w-full h-14 sm:h-14 md:h-14 lg:h-14 rounded-md font-semibold
+            text-[clamp(0.9rem,2vw,1.3rem)] sm:text-lg 
             ${btn === "-" ? "bg-red-200 text-pink-700" : "bg-white text-pink-600"}
-            shadow-md hover:shadow-lg transition-all duration-500
+            shadow hover:shadow-md transition-all duration-100
             active:bg-pink-100
           `}
           onClick={() => handleClick(btn)}
