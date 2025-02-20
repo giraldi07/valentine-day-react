@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 interface TypingEffectProps {
-  text: string; // Teks yang akan ditampilkan
-  speed?: number; // Kecepatan efek ketik (ms per karakter)
-  color?: string; // Warna teks (opsional)
-  fontFamily?: string; // Tipe font (opsional)
-  fontWeight?: string; // Ketebalan font (opsional)
-  fontSize?: number; // ukuran font
-  letterSpacing?: string; // jarak antar huruf
+  text: string;
+  speed?: number;
+  color?: string;
+  fontFamily?: string;
+  fontWeight?: string;
+  fontSize?: { base: string; sm: string; md: string; lg: string };
+  letterSpacing?: string;
 }
 
 const TypingEffect: React.FC<TypingEffectProps> = ({
@@ -16,12 +16,31 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
   color,
   fontFamily,
   fontWeight,
-  fontSize,
+  fontSize = { base: "32px", sm: "40px", md: "48px", lg: "64px" },
   letterSpacing,
 }) => {
   const [displayText, setDisplayText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [responsiveFontSize, setResponsiveFontSize] = useState(fontSize.base);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setResponsiveFontSize(fontSize.lg);
+      } else if (window.innerWidth >= 768) {
+        setResponsiveFontSize(fontSize.md);
+      } else if (window.innerWidth >= 640) {
+        setResponsiveFontSize(fontSize.sm);
+      } else {
+        setResponsiveFontSize(fontSize.base);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [fontSize]);
 
   useEffect(() => {
     if (!isDeleting && currentIndex < text.length) {
@@ -47,10 +66,10 @@ const TypingEffect: React.FC<TypingEffectProps> = ({
     <span
       className="inline-block"
       style={{
-        color: color || "inherit", // Gunakan warna dari props atau warna default
-        fontFamily: fontFamily || "inherit", // Gunakan font dari props atau font default
-        fontWeight: fontWeight || "normal", // Gunakan ketebalan font dari props atau normal
-        fontSize: fontSize || "inherit",
+        color: color || "inherit",
+        fontFamily: fontFamily || "inherit",
+        fontWeight: fontWeight || "normal",
+        fontSize: responsiveFontSize, // Gunakan fontSize responsif
         letterSpacing: letterSpacing || "normal",
         textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
       }}

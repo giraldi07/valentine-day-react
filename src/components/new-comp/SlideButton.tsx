@@ -7,12 +7,16 @@ interface SlideToOpenButtonProps {
   isOpen: boolean;
   onSlideSuccess: () => void;
   onSlideChange: () => void;
+  fontFamily?: string;
+  letterSpacing?: string;
 }
 
 const SlideToOpenButton: React.FC<SlideToOpenButtonProps> = ({
   isOpen,
   onSlideSuccess,
   onSlideChange,
+  fontFamily = "Arial, sans-serif",
+  letterSpacing = "normal",
 }) => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [buttonX, setButtonX] = useState(0);
@@ -21,7 +25,7 @@ const SlideToOpenButton: React.FC<SlideToOpenButtonProps> = ({
 
   useEffect(() => {
     if (sliderRef.current) {
-      setMaxSlideX(sliderRef.current.offsetWidth * 0.35); // 35% dari lebar slider
+      setMaxSlideX(sliderRef.current.offsetWidth * 0.55); // 35% dari lebar slider
     }
   }, [sliderRef.current?.offsetWidth]);
 
@@ -88,7 +92,7 @@ const SlideToOpenButton: React.FC<SlideToOpenButtonProps> = ({
       </motion.button>
 
       {/* Teks */}
-      <span className={OpeningData.slideButton.className}>
+      <span className={OpeningData.slideButton.className} style={{ fontFamily, letterSpacing }}>
         {isOpen ? OpeningData.slideButton.text.open : OpeningData.slideButton.text.closed}
       </span>
     </div>

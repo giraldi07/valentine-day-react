@@ -60,6 +60,7 @@ function Opening() {
             fontFamily={OpeningData.pageTitle.fontFamily} // Menggunakan fontFamily dari `pageTitle`
             color={OpeningData.pageTitle.color} // Menggunakan color dari `pageTitle`
             fontWeight={OpeningData.pageTitle.fontWeight} // Anda bisa mengirim fontWeight langsung atau dari data
+            fontSize={OpeningData.pageTitle.fontSize} // ukuran font
           />
         </motion.h1>
 
@@ -68,12 +69,11 @@ function Opening() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 1 }}
-          className={`text-lg sm:text-2xl md:text-3xl mb-6 sm:mb-8 px-4 text-center w-full max-w-[80%] sm:max-w-[70%] md:max-w-[60%] z-50 ${OpeningData.typingEffect.color}`}
+          className={`mb-6 sm:mb-8 px-4 text-center w-full max-w-[80%] lg:max-w-[100%] sm:max-w-[70%] md:max-w-[80%] z-50 ${OpeningData.typingEffect.color}`}
           style={{
             height: '100px',
             fontFamily: OpeningData.typingEffect.fontFamily,
             fontWeight: OpeningData.typingEffect.fontWeight,
-            fontSize: OpeningData.typingEffect.fontSize,
             letterSpacing: OpeningData.typingEffect.letterSpacing,
           }}
         >
@@ -84,6 +84,7 @@ function Opening() {
             fontFamily={OpeningData.typingEffect.fontFamily}
             fontWeight={OpeningData.typingEffect.fontWeight}
             letterSpacing={OpeningData.typingEffect.letterSpacing}
+            fontSize={OpeningData.typingEffect.fontSize}
           />
         </motion.div>
 
@@ -98,6 +99,8 @@ function Opening() {
             isOpen={isOpen}
             onSlideSuccess={handleSlideSuccess}
             onSlideChange={handleSlideChange}
+            fontFamily={OpeningData.slideButton.fontFamily}
+            letterSpacing={OpeningData.slideButton.letterSpacing}
           />
         </motion.div>
 
@@ -128,6 +131,21 @@ function Opening() {
           className="absolute bottom-[-40vw] right-[-50vw] md:bottom-[-10vw] md:right-[-23vw] lg:bottom-[-24vw] lg:right-[-30vw] w-[150vw] md:w-[90vw] sm:w-[40vw] h-auto object-cover -rotate-45"
         />
       </motion.div>
+
+      {/* Gambar Awan di Tengah */}
+      <motion.div
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 1.6 }}
+        className="absolute bottom-[-6vw] left-0 right-0 w-full flex justify-center z-20"
+      >
+        <img
+          src={OpeningData.images.cloudCenter}
+          alt="CloudCenter"
+          className="w-full max-w-[80vw] sm:max-w-[60vw] md:max-w-[50vw] lg:max-w-[40vw] h-auto object-cover"
+        />
+      </motion.div>
+
 
       {/* Gambar Awan */}
       <motion.div
