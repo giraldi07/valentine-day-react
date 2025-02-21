@@ -48,7 +48,7 @@ const OpeningData = {
   // Data untuk latar belakang
   background: {
     gradient: "bg-gradient-radial from-gray-50 via-gray-300 to-gray-500", // Gradien latar belakang
-    overlay: "bg-black bg-opacity-10", // Overlay semi-transparan
+    overlay: "bg-black bg-opacity-5", // Overlay semi-transparan
   },
 
   // Data untuk gambar dan animasi

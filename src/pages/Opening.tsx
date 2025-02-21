@@ -136,7 +136,7 @@ function Opening() {
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 1.6 }}
+        transition={{ delay: 2 }}
         className="absolute bottom-[-6vw] left-0 right-0 w-full flex justify-center z-20"
       >
         <img

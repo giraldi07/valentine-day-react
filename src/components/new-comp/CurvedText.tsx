@@ -56,7 +56,7 @@ const CurvedText = ({
       {/* Komponen ReactCurvedText untuk menampilkan teks melengkung */}
       <ReactCurvedText
         width={410} // Lebar area SVG tempat teks melengkung
-        height={120} // Tinggi area SVG tempat teks melengkung
+        height={100} // Tinggi area SVG tempat teks melengkung
         cx={200} // Posisi titik tengah lingkaran (sumbu X)
         cy={150} // Posisi titik tengah lingkaran (sumbu Y) - bisa diturunkan jika teks terpotong
         rx={250} // Radius sumbu X untuk lengkungan teks
