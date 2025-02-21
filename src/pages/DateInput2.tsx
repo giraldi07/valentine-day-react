@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Numpad from '../components/new-comp/Numpad';
@@ -28,6 +28,14 @@ const DateInput2: React.FC = () => {
   const wrongAudioRef = useRef(new Audio(wrongSound));
   const successAudioRef = useRef(new Audio(successSound));
   const clickAudioRef = useRef(new Audio(clickSound));
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
 
   const handleInputChange = (value: string) => {
     setCurrentInput(value);
