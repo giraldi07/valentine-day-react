@@ -39,7 +39,7 @@ body {
 
 /* Halaman Isi */
 .flipbook-page {
-  background-color: #fff; /* Warna latar belakang putih */
+  background-color: rgb(237, 237, 237); /* Warna latar belakang putih */
   border: 1px solid #ddd;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   display: flex;
@@ -52,8 +52,8 @@ body {
 }
 
 .flipbook-page img {
-  width: 100%;
-  height: auto;
+  width: 300px;
+  height: 200px;
   border-radius: 8px;
   margin-bottom: 16px;
 }

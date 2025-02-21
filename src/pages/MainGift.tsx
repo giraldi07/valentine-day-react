@@ -38,10 +38,8 @@ export default function MainGift() {
         className="absolute inset-0 w-full h-screen bg-cover bg-center z-0"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
-        
+
       </div>
-
-
 
       {/* Tombol Back/Kembali */}
       <button
@@ -74,7 +72,7 @@ export default function MainGift() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          {/* Teks alas buku flip */}
+          {/* Teks alas buku sebelah kiri */}
           <div className="absolute ml-3 mt-10 leading-5 z-0 p-5 text-md font-semibold text-pink-800 text-justify w-[90%] max-w-xs whitespace-pre-line" style={{ fontFamily: "Lobster Two" }}>
             <p>
               "Selamat ulang tahun, sayangku! Hari ini adalah hari spesial untuk merayakan 
@@ -90,6 +88,16 @@ export default function MainGift() {
               Semoga di hari ulang tahunmu ini, kamu merasa dicintai, dihargai, dan disayangi 
               seperti cara kamu mencintaiku. Aku berjanji akan selalu ada untukmu, dalam suka 
               maupun duka. Selamat ulang tahun, cintaku".
+            </p>
+          </div>
+
+          {/* Teks Alas buku sebelah kanan */}
+          <div className="absolute mt-36 right-0 flex flex-col items-center justify-center text-center z-0 p-5 text-md font-semibold text-pink-800 w-[90%] max-w-xs whitespace-pre-line" style={{ fontFamily: "Lobster Two" }}>
+            <h2 className="text-xl">
+              "Terimakasih ya sayang udah mau nerima hadiah ini".
+            </h2>
+            <p className="mt-2 font-semibold opacity-80">
+              -- From your sweet heart --
             </p>
           </div>
 
