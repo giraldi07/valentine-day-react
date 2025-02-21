@@ -9,22 +9,22 @@ import mainGift from '../assets/images/icons/main-gift.svg';
 
 export const features = [
   {
-    id: 'gallery',
-    icon: cameraIcon, // Path ke gambar ikon
-    title: 'Gallery',
-    path: '/gallery',
-    animation: {
-      hover: { scale: 1.1, rotate: [0, -10, 10, 0] },
-      tap: { scale: 0.9 }
-    }
-  },
-  {
     id: 'gift',
     icon: mainGift, // Path ke gambar ikon
     title: 'Main Gift',
     path: '/photo-card',
     animation: {
       hover: { scale: 1.1, y: -10 },
+      tap: { scale: 0.9 }
+    }
+  },
+  {
+    id: 'gallery',
+    icon: cameraIcon, // Path ke gambar ikon
+    title: 'Gallery',
+    path: '/gallery',
+    animation: {
+      hover: { scale: 1.1, rotate: [0, -10, 10, 0] },
       tap: { scale: 0.9 }
     }
   },

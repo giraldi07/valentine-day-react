@@ -10,7 +10,6 @@ import Frame2Left from '../assets/images/frame2-left.svg'; // Import frame kiri
 import Frame2Right from '../assets/images/frame2-right.svg';
 import clickSound from '../assets/audio/tap.mp3'; // Import file suara
 
-
 const Features: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,6 +43,14 @@ const Features: React.FC = () => {
     seconds: diffInSeconds % 60,
   };
 
+  // Posisi ikon fitur
+  const iconPositions = [
+    { x: 0, y: -120 }, // [ikon1]
+    { x: -120, y: 0 }, // [ikon2]
+    { x: 120, y: 0 },  // [ikon3]
+    { x: -60, y: 120 }, // [ikon4]
+    { x: 60, y: 120 },  // [ikon5]
+  ];
 
   return (
     <PageTransition>
@@ -139,8 +146,8 @@ const Features: React.FC = () => {
                 animate={{
                   scale: showFeatures ? 1 : 0,
                   opacity: showFeatures ? 1 : 0,
-                  x: showFeatures ? Math.cos((index * 2 * Math.PI) / features.length) * 120 : 0,
-                  y: showFeatures ? Math.sin((index * 2 * Math.PI) / features.length) * 120 : 0,
+                  x: showFeatures ? iconPositions[index].x : 0,
+                  y: showFeatures ? iconPositions[index].y : 0,
                 }}
                 transition={{ delay: index * 0.1, type: 'spring', stiffness: 100 }}
                 onClick={() => {
