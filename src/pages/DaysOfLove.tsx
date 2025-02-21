@@ -116,7 +116,7 @@ const DaysOfLove: React.FC = () => {
             <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 2 }}
+                transition={{ delay: 1.1 }}
                 className="w-full mb-[-10vw] mt-[-24vw] md:mt-[-8vw] max-w-[80%] sm:max-w-[60%] md:max-w-[50%] lg:max-w-[40%]"
             >
               <Lottie

@@ -15,15 +15,17 @@ import successSound from '../assets/audio/success.mp3';
 import FrameSlide from '../components/new-comp/FrameSlide';
 import clickSound from '../assets/audio/tap.mp3';
 
-const CORRECT_DATE = '17-02-2025';
+import dateInputData from '../data/pages-data/date-input'; // Import data
 
 const DateInput2: React.FC = () => {
   const [currentInput, setCurrentInput] = useState('');
   const [fillPercentage, setFillPercentage] = useState(0);
   const [isShaking, setIsShaking] = useState(false);
   const [showHearts, setShowHearts] = useState(false);
-  const [isError, setIsError] = useState(false); // State untuk error
+  const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
+
+  const CORRECT_DATE = dateInputData.correctDate;
 
   const wrongAudioRef = useRef(new Audio(wrongSound));
   const successAudioRef = useRef(new Audio(successSound));
@@ -107,15 +109,11 @@ const DateInput2: React.FC = () => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1 }}
               className="text-3xl md:text-4xl font-bold text-white mb-0 text-center relative z-30"
-              style={{
-                fontFamily: 'Wedges',
-                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)',
-                letterSpacing: '0.1em',
-              }}
+              style={dateInputData.judulStyling} // Gunakan styling dari data
             >
-              Tanggal Jadian Kita?
+              {dateInputData.judul} {/* Gunakan judul dari data */}
             </motion.h1>
-            <p className="text-gray-600 font-bold italic">Masukan data 17-02-2025</p>
+            <p className="text-gray-600 font-bold italic">Masukan data {dateInputData.correctDate}</p>
           </div>
 
           {/* Input Tanggal */}
