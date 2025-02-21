@@ -10,6 +10,7 @@ import Frame2Left from '../assets/images/frame2-left.svg'; // Import frame kiri
 import Frame2Right from '../assets/images/frame2-right.svg';
 import clickSound from '../assets/audio/tap.mp3'; // Import file suara
 import { useMediaQuery } from 'react-responsive';
+import { ArrowLeft } from 'lucide-react';
 
 const Features: React.FC = () => {
   const navigate = useNavigate();
@@ -31,6 +32,12 @@ const Features: React.FC = () => {
   const playClickSound = () => {
     const audio = new Audio(clickSound);
     audio.play();
+  };
+
+  // Fungsi untuk kembali ke halaman sebelumnya
+  const handleBack = () => {
+    playClickSound(); // Memutar suara saat tombol kembali ditekan
+    navigate(-1); // Kembali ke halaman sebelumnya
   };
 
   // Konversi string tanggal ke objek Date
@@ -124,7 +131,7 @@ const Features: React.FC = () => {
             className="w-full h-full object-cover"
           />
           {/* Overlay Semi-Transparan */}
-          <div className="absolute inset-0 bg-black bg-opacity-10"></div>
+          <div className="absolute inset-0 bg-black pointer-events-none bg-opacity-10"></div>
         </motion.div>
 
         {/* Overlay Blur */}
@@ -133,10 +140,11 @@ const Features: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-20"
+            className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-20 pointer-events-none"
             onClick={toggleFeatures}
           />
         )}
+
 
         <div className="relative max-w-4xl mx-auto mt-10 pt-8">
 
@@ -221,6 +229,24 @@ const Features: React.FC = () => {
               startDate={selectedDate} // Teruskan tanggal awal ke TimeCard
             />
           </motion.div>
+          
+          {/* Tombol Back */}
+          <div className="flex justify-center mt-6 z-50 relative">
+            <motion.button
+              onClick={handleBack}
+              whileHover={{ scale: 1.1, rotate: -3 }}
+              whileTap={{ scale: 0.9 }}
+              className="bg-white text-gray-800 px-4 py-2 rounded-lg shadow-lg 
+                        hover:bg-gray-100 transition-colors flex items-center gap-2 group"
+            >
+              <ArrowLeft 
+                size={20} 
+                className="transition-transform duration-300 group-hover:-translate-x-1" 
+              />
+              Back
+            </motion.button>
+          </div>
+
 
         </div>
       </div>

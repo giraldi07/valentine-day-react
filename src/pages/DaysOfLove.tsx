@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Lottie from 'lottie-react';
-import { Heart } from 'lucide-react';
+import { ArrowLeft, Heart } from 'lucide-react';
 import BgAnimImage2 from '../assets/images/gif/flower.gif';
 import catAnimation from '../assets/lottie-animations/cat.json';
 import FrameSlide from '../components/new-comp/FrameSlide';
@@ -148,21 +148,43 @@ const DaysOfLove: React.FC = () => {
               )}
             </AnimatePresence>
 
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => {
-                playClickSound();
-                setShowCard(false); // Sembunyikan kartu terlebih dahulu
-                setTimeout(() => {
-                  navigate('/features', { state: { date: startDate } }); // Pindah halaman setelah animasi selesai
-                }, 1000); // Sesuaikan dengan durasi animasi exit
-              }}
-              className="px-4 sm:px-6 py-2 sm:py-3 bg-red-500 text-white font-medium sm:font-semibold text-base sm:text-lg rounded-lg shadow-md hover:bg-orange-700 transition-all duration-300 w-fit z-40"
-              style={{ fontFamily: 'Lobster Two, cursive' }}
-            >
-              Explore Features
-            </motion.button>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-6">
+              {/* Tombol Back */}
+              <motion.button
+                whileHover={{ scale: 1.1, rotate: -3 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => {
+                  playClickSound();
+                  setShowCard(false);
+                  setTimeout(() => {
+                    navigate(-1);
+                  }, 800);
+                }}
+                className="px-4 sm:px-6 py-2 sm:py-3 flex items-center gap-2 bg-white text-black font-medium sm:font-semibold text-base sm:text-lg rounded-lg shadow-lg hover:bg-gray-200 transition-all duration-300 w-fit z-40"
+                style={{ fontFamily: 'Poppins, sans-serif' }}
+              >
+                <ArrowLeft size={20} />
+                Back
+              </motion.button>
+
+              {/* Tombol Explore Features */}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  playClickSound();
+                  setShowCard(false);
+                  setTimeout(() => {
+                    navigate('/features', { state: { date: startDate } });
+                  }, 1000);
+                }}
+                className="px-4 sm:px-6 py-2 sm:py-3 bg-red-500 text-white font-medium sm:font-semibold text-base sm:text-lg rounded-lg shadow-md hover:bg-orange-700 transition-all duration-300 w-fit z-40"
+                style={{ fontFamily: 'Lobster Two, cursive' }}
+              >
+                Explore Features
+              </motion.button>
+            </div>
+
 
           </div>
         </motion.div>
