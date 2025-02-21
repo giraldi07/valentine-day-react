@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import Lottie from 'lottie-react';
@@ -12,6 +12,8 @@ import TimeCard from "../components/new-comp/TimeCard";
 
 import clickSound from '../assets/audio/tap.mp3'; // Import file suara
 
+// **Preload audio**
+const audio = new Audio(clickSound);
 
 const DaysOfLove: React.FC = () => {
   const location = useLocation();
@@ -35,11 +37,16 @@ const DaysOfLove: React.FC = () => {
     seconds: diffInSeconds % 60,
   };
 
+  useEffect(() => {
+    // Preload audio agar tidak ada delay
+    audio.load();
+  }, []);
+
   // Fungsi efek suara klik
   const playClickSound = () => {
-    const audio = new Audio(clickSound);
+    audio.currentTime = 0; // Restart audio setiap kali tombol diklik
     audio.play();
-  }
+  };
 
   return (
     <FrameSlide direction="down" duration={1} perspective={1500}>
@@ -83,7 +90,6 @@ const DaysOfLove: React.FC = () => {
               className="text-center mb-8 sm:mb-10"
               style={{ fontFamily: 'Breathing' }}
             >
-              {/* Teks Putih (Utama) */}
               <motion.h1
                   initial={{ y: -20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}

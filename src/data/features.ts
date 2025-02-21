@@ -3,6 +3,7 @@ import cameraIcon from '../assets/images/icons/galery.svg';
 import checkSquareIcon from '../assets/images/icons/todolist.svg';
 import gameIcon from '../assets/images/icons/game.svg';
 import mailIcon from '../assets/images/icons/loveletter.svg';
+import mainGift from '../assets/images/icons/main-gift.svg';
 
 
 
@@ -17,26 +18,16 @@ export const features = [
       tap: { scale: 0.9 }
     }
   },
-  // {
-  //   id: 'card',
-  //   icon: heartIcon, // Path ke gambar ikon
-  //   title: 'Love Card',
-  //   path: '/photo-card',
-  //   animation: {
-  //     hover: { scale: 1.1, y: -10 },
-  //     tap: { scale: 0.9 }
-  //   }
-  // },
-  // {
-  //   id: 'music',
-  //   icon: musicIcon, // Path ke gambar ikon
-  //   title: 'Music',
-  //   path: '/music',
-  //   animation: {
-  //     hover: { scale: 1.1, rotate: 360 },
-  //     tap: { scale: 0.9 }
-  //   }
-  // },
+  {
+    id: 'gift',
+    icon: mainGift, // Path ke gambar ikon
+    title: 'Main Gift',
+    path: '/photo-card',
+    animation: {
+      hover: { scale: 1.1, y: -10 },
+      tap: { scale: 0.9 }
+    }
+  },
   {
     id: 'todo',
     icon: checkSquareIcon, // Path ke gambar ikon

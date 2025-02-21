@@ -3,10 +3,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { features } from '../data/features';
 import PageTransition from '../components/PageTransition';
-import Decorations from '../components/Decorations';
 import TimeCard from '../components/new-comp/TimeCard';
 import BgAnimImage from '../assets/images/gif/blink-blink.gif';
 import featuresIcons from '../assets/images/icons/biglove.svg';
+import Frame2Left from '../assets/images/frame2-left.svg'; // Import frame kiri
+import Frame2Right from '../assets/images/frame2-right.svg';
 import clickSound from '../assets/audio/tap.mp3'; // Import file suara
 
 
@@ -47,7 +48,20 @@ const Features: React.FC = () => {
   return (
     <PageTransition>
       <div className="min-h-screen bg-gradient-radial from-gray-50 via-gray-300 to-gray-500 p-4">
-        <Decorations />
+
+        {/* Frame SVG - Pojok Kiri Bawah */}
+        <img
+          src={Frame2Left}
+          alt="Frame Left"
+          className="fixed left-0 bottom-0 w-[50vw] z-10"
+        />
+
+        {/* Frame SVG - Pojok Kanan Atas */}
+        <img
+          src={Frame2Right}
+          alt="Frame Right"
+          className="fixed right-0 top-0 w-[50vw] z-10"
+        />
 
         {/* Background Animasi */}
         <motion.div
@@ -90,7 +104,7 @@ const Features: React.FC = () => {
                 letterSpacing: '0.1em', // Mengatur jarak antar huruf
             }}
           >
-              Days Of Love
+              Welcome
           </motion.h1>
            
 
@@ -102,15 +116,20 @@ const Features: React.FC = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mb-2 z-30">
+              <motion.div
+                className="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mb-2 z-30"
+                animate={{ scale: [1, 1.1, 1] }} // Animasi berdenyut
+                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} // Looping smooth
+              >
                 <img
-                  src={featuresIcons} // Menggunakan ikon hati dari data
+                  src={featuresIcons}
                   alt="Heart Icon"
                   className="w-40 h-40"
                 />
-              </div>
+              </motion.div>
               <span className="text-red-600 font-medium"></span>
             </motion.div>
+
 
             {/* Ikon Fitur */}
             {features.map((feature, index) => (
