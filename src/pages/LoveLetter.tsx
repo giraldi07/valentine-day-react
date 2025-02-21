@@ -4,10 +4,8 @@ import { Heart } from 'lucide-react';
 import { motion } from 'framer-motion';
 import DotBackground from '../components/bg-animations/DotBackground';
 import pitaImage from '../assets/images/pita.svg';
-import data from '../data/love-letter/data.json'; // Import file JSON
-
+import loveLetterData from '../data/pages-data/love-letter'; // Import data dari love-letter.ts
 import clickSound from '../assets/audio/tap.mp3'; // Import file suara
-
 
 function LoveLetter() {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,7 +54,7 @@ function LoveLetter() {
             >
               <Heart className="w-16 h-16 text-red-500 mx-auto mb-4" />
               <h3 className="text-2xl font-bold text-gray-800 mb-4" style={{ fontFamily: "Lobster Two, cursive" }}>
-                {data.judul} {/* Gunakan judul dari JSON */}
+                {loveLetterData.judul} {/* Gunakan judul dari loveLetterData */}
               </h3>
               <p className="text-gray-600" style={{ fontFamily: "Lobster Two, cursive" }}>Click to open</p>
             </motion.div>
@@ -77,15 +75,15 @@ function LoveLetter() {
               <div className="prose prose-lg mx-auto">
                 <h3 className="text-2xl font-bold text-red-600 mb-4" style={{ fontFamily: "Lobster Two, cursive" }}>My Dearest,</h3>
                 
-                {/* Gunakan isi pesan dari JSON */}
-                {data.isiPesan.map((paragraf, index) => (
+                {/* Gunakan isi pesan dari loveLetterData */}
+                {loveLetterData.isiPesan.map((paragraf, index) => (
                   <p key={index} className="text-gray-700 mb-4" style={{ fontFamily: "League Spartan" }}>
                     {paragraf}
                   </p>
                 ))}
                 
                 <p className="text-red-500 font-semibold" style={{ fontFamily: "Lobster Two, cursive" }}>
-                  {data.pengirim} 💓 {/* Gunakan pengirim dari JSON */}
+                  {loveLetterData.pengirim} 💓 {/* Gunakan pengirim dari loveLetterData */}
                 </p>
               </div>
               
@@ -121,7 +119,7 @@ function LoveLetter() {
             style={{ transform: "rotateY(180deg)", backfaceVisibility: "hidden" }} // Rotasi 180 derajat
           >
             <img 
-              src={data.foto} // Gunakan foto dari JSON
+              src={loveLetterData.foto} // Gunakan foto dari loveLetterData
               alt="Foto"
               className="w-full h-full object-cover" 
             />
