@@ -29,7 +29,7 @@ function Opening() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className={`h-screen max-w-full mx-auto ${OpeningData.background.gradient} flex flex-col items-center justify-center relative overflow-hidden`}
+      className={`min-h-screen max-w-full mx-auto ${OpeningData.background.gradient} flex flex-col items-center justify-center relative overflow-hidden`}
     >
       {/* Background Animasi */}
       <motion.div
@@ -47,7 +47,7 @@ function Opening() {
         <div className={`absolute inset-0 ${OpeningData.background.overlay}`}></div>
       </motion.div>
 
-      <div className="flex flex-col mb-20 items-center justify-center h-screen z-50 relative">
+      <div className="flex flex-col mb-0 items-center justify-center h-screen z-50 relative">
         {/* Judul */}
         <motion.h1
           initial={{ y: 20, opacity: 0 }}
