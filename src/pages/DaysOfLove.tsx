@@ -9,6 +9,8 @@ import FrameSlide from '../components/new-comp/FrameSlide';
 import Frame2Left from '../assets/images/frame2-left.svg'; // Import frame kiri
 import Frame2Right from '../assets/images/frame2-right.svg';
 import TimeCard from "../components/new-comp/TimeCard";
+import daysOfLoveData from '../data/pages-data/days-of-love'; // Import data
+
 
 import clickSound from '../assets/audio/tap.mp3'; // Import file suara
 
@@ -91,22 +93,21 @@ const DaysOfLove: React.FC = () => {
               style={{ fontFamily: 'Breathing' }}
             >
               <motion.h1
-                  initial={{ y: -20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 1 }}
-                  className="text-3xl md:text-4xl font-bold text-white mb-0 text-center relative z-30"
-                  style={{
-                      fontFamily: 'Breathing',
-                      textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)', // Menambahkan efek bayangan untuk dimensi
-                      letterSpacing: '0.1em', // Mengatur jarak antar huruf
-                  }}
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 1 }}
+                className="text-3xl md:text-4xl font-bold text-white mb-0 text-center relative z-30"
+                style={daysOfLoveData.styling.judul} // Gunakan styling judul dari data
               >
-                  Days Of Love
+                {daysOfLoveData.judul} {/* Gunakan judul dari data */}
               </motion.h1>
               <div className="flex items-center justify-center gap-2 sm:gap-3">
                 <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-pink-500" fill="#ec4899" />
-                <span className="text-base mt-4 sm:text-lg text-pink-500" style={{ fontFamily: 'Montserrat, sans-serif', }}>
-                  Our journey together
+                <span
+                  className="text-base mt-4 sm:text-lg text-pink-500"
+                  style={daysOfLoveData.styling.subjudul} // Gunakan styling subjudul dari data
+                >
+                  {daysOfLoveData.subjudul} {/* Gunakan subjudul dari data */}
                 </span>
                 <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-pink-500" fill="#ec4899" />
               </div>
@@ -131,7 +132,7 @@ const DaysOfLove: React.FC = () => {
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 50 }}
-                  transition={{ duration: 3 }}
+                  transition={{ duration: 1.1 }}
                   className="w-full mb-2"
                   style={{
                     fontFamily: 'Lobster Two',
@@ -155,7 +156,7 @@ const DaysOfLove: React.FC = () => {
                 setShowCard(false); // Sembunyikan kartu terlebih dahulu
                 setTimeout(() => {
                   navigate('/features', { state: { date: startDate } }); // Pindah halaman setelah animasi selesai
-                }, 1500); // Sesuaikan dengan durasi animasi exit
+                }, 1000); // Sesuaikan dengan durasi animasi exit
               }}
               className="px-4 sm:px-6 py-2 sm:py-3 bg-red-500 text-white font-medium sm:font-semibold text-base sm:text-lg rounded-lg shadow-md hover:bg-orange-700 transition-all duration-300 w-fit z-40"
               style={{ fontFamily: 'Lobster Two, cursive' }}
