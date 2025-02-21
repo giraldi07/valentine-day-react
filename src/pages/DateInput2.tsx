@@ -97,11 +97,11 @@ const DateInput2: React.FC = () => {
             x: isShaking ? [-5, 5, -5, 5, 0] : 0, // Efek getar horizontal
           }}
           transition={{ duration: 0.5 }}
-          className="max-w-4xl mx-auto p-6 md:p-12 lg:p-2 w-full flex flex-col z-40 overflow-y-auto h-full"
+          className="max-w-4xl mx-auto p-6 md:p-12 lg:p-2 mt-4 mb-6 w-full flex flex-col z-40 overflow-y-auto h-full"
         >
 
           {/* Judul */}
-          <div className="text-center mt-0 lg:mt-6 mb-6 sm:mb-8 z-40 relative">
+          <div className="text-center mt-2 lg:mt-6 mb-6 sm:mb-8 z-40 relative">
             <motion.h1
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
