@@ -77,11 +77,12 @@ body {
 /* Media queries untuk responsif */
 @media (max-width: 768px) {
   .flipbook-page p {
-    font-size: 0.9rem; /* Ukuran lebih kecil untuk mobile */
+    font-size: 15px; /* Ukuran lebih kecil untuk mobile */
   }
 
   .flipbook-page img {
-    height: 200px; /* Sesuaikan tinggi gambar untuk mobile */
+    width: 500px;
+    height: 200px;
   }
 
   .flipbook-page button img {
@@ -90,18 +91,56 @@ body {
   }
 }
 
+
+
 .flipbook-page button {
-  background: none;
-  border: none;
+  position: relative;
+  display: inline-block;
   cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.flipbook-page button:hover {
+  transform: scale(1.05);
 }
 
 .flipbook-page button img {
   width: 160px;
   height: 90px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
+
+.flipbook-page button:hover img {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  opacity: 0.9;
+}
+
+/* Tambahkan ikon play di tengah */
+.flipbook-page button::after {
+  content: "▶";
+  font-size: 30px;
+  color: white;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.5);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.flipbook-page button:hover::after {
+  background: rgba(0, 0, 0, 0.7);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
 
 /* dot animasi css */
 @keyframes moveDots {
