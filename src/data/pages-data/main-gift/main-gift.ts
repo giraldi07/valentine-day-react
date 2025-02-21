@@ -57,7 +57,11 @@ export const mainGiftData = {
       image: imageEmpat 
     },
     { 
-      text: "Tonton video kenangan spesial ini, kumpulan momen indah yang telah kita lalui bersama. Semoga ini bisa membawa senyum dan mengingatkanmu betapa aku mencintaimu.", 
+      text: "Hadiah ini dibuat dengan penuh kasih sayang, sebagai ungkapan terima kasih atas kebahagiaan yang kau berikan. Semoga ini bisa menjadi pengingat betapa berharganya kamu bagiku.", 
+      image: imageEmpat 
+    },
+    { 
+      text: "Tonton video kenangan spesial ini, kumpulan momen indah yang telah kita lalui bersama. Semoga ini bisa membawa senyum dan mengingatkanmu betapa aku mencintaimu. Mute background music terlebih dahulu agar suara video tidak tabrakan", 
       video: VideoGift,
       thumbnail: ThumbnailVideo 
     },
