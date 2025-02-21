@@ -89,7 +89,7 @@ const DateInput2: React.FC = () => {
             x: isShaking ? [-5, 5, -5, 5, 0] : 0, // Efek getar horizontal
           }}
           transition={{ duration: 0.5 }}
-          className="max-w-4xl mx-auto p-10 md:p-12 lg:p-2 w-full min-h-screen flex-grow flex flex-col z-40 overflow-y-auto overscroll-contain"
+          className="max-w-4xl mx-auto p-6 md:p-12 lg:p-2 w-full flex flex-col z-40 overflow-y-auto h-full"
         >
 
           {/* Judul */}
@@ -144,7 +144,7 @@ const DateInput2: React.FC = () => {
 
 
           {/* Submit Button */}
-          <div className="w-full max-w-md mx-auto flex justify-center mt-12 mb-12">
+          <div className="w-full max-w-md mx-auto flex justify-center mt-4 mb-12">
             <SubmitButton isEnabled={currentInput.length === 10} onClick={handleSubmit} />
           </div>
         </motion.div>
