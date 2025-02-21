@@ -29,7 +29,7 @@ function Opening() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className={`min-h-screen max-w-full mx-auto ${OpeningData.background.gradient} flex flex-col items-center justify-center relative overflow-hidden`}
+      className={`min-h-screen overflow-hidden max-w-full mx-auto ${OpeningData.background.gradient} flex flex-col items-center justify-center relative overflow-hidden`}
     >
       {/* Background Animasi */}
       <motion.div
@@ -47,7 +47,8 @@ function Opening() {
         <div className={`absolute inset-0 ${OpeningData.background.overlay}`}></div>
       </motion.div>
 
-      <div className="flex flex-col mb-0 items-center justify-center h-screen z-50 relative">
+      {/* konten halaman */}
+      <div className="flex flex-col mb-0 items-center justify-center min-h-screen z-50 relative overflow-hidden">
         {/* Judul */}
         <motion.h1
           initial={{ y: 20, opacity: 0 }}
@@ -137,7 +138,7 @@ function Opening() {
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 2 }}
-        className="absolute bottom-[-6vw] left-0 right-0 w-full flex justify-center z-20"
+        className="absolute bottom-[-4vw] left-0 right-0 w-full flex justify-center z-20"
       >
         <img
           src={OpeningData.images.cloudCenter}
