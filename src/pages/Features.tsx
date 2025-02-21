@@ -37,7 +37,7 @@ const Features: React.FC = () => {
   // Fungsi untuk kembali ke halaman sebelumnya
   const handleBack = () => {
     playClickSound(); // Memutar suara saat tombol kembali ditekan
-    navigate(-1); // Kembali ke halaman sebelumnya
+    navigate('/days-of-love'); // Kembali ke halaman sebelumnya
   };
 
   // Konversi string tanggal ke objek Date

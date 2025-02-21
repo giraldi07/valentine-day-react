@@ -157,7 +157,7 @@ const DaysOfLove: React.FC = () => {
                   playClickSound();
                   setShowCard(false);
                   setTimeout(() => {
-                    navigate(-1);
+                    navigate('/date-input2');
                   }, 800);
                 }}
                 className="px-4 sm:px-6 py-2 sm:py-3 flex items-center gap-2 bg-white text-black font-medium sm:font-semibold text-base sm:text-lg rounded-lg shadow-lg hover:bg-gray-200 transition-all duration-300 w-fit z-40"
