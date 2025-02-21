@@ -37,7 +37,7 @@ const MusicBackground = () => {
       ></audio>
 
       {/* Floating button */}
-      <div className="fixed bottom-10 right-10 z-50">
+      <div className="fixed bottom-4 right-4 z-50">
         <button
           onClick={toggleSettings} // Toggle settings visibility on button click
           className="bg-indigo-600 text-white rounded-full p-4 shadow-lg"
