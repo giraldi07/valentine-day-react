@@ -17,6 +17,7 @@ import Fliping from './pages/Fliping';
 import Quiz from './pages/games/Quiz';
 import TekaTeki from './pages/games/TekaTeki';
 import MusicBackground from './components/new-comp/MusicBackground';
+import MainGift from './pages/MainGift';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -48,6 +49,7 @@ function AnimatedRoutes() {
           <Route path="/closing" element={<Closing />} />
           <Route path="/games" element={<Games />} />
           <Route path="/fliping" element={<Fliping />} />
+          <Route path="/main-gift" element={<MainGift />} />
 
           <Route path="/games/tts" element={<TekaTeki />} />
           <Route path="/games/quiz" element={<Quiz />} />

@@ -12,7 +12,7 @@ export const features = [
     id: 'gift',
     icon: mainGift, // Path ke gambar ikon
     title: 'Main Gift',
-    path: '/photo-card',
+    path: '/main-gift',
     animation: {
       hover: { scale: 1.1, y: -10 },
       tap: { scale: 0.9 }
