@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { features } from '../data/features';
@@ -9,12 +9,16 @@ import featuresIcons from '../assets/images/icons/biglove.svg';
 import Frame2Left from '../assets/images/frame2-left.svg'; // Import frame kiri
 import Frame2Right from '../assets/images/frame2-right.svg';
 import clickSound from '../assets/audio/tap.mp3'; // Import file suara
+import { useMediaQuery } from 'react-responsive';
 
 const Features: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const startDate = location.state?.date || "10-02-2025"; // Default jika tidak ada state
   const [showFeatures, setShowFeatures] = useState(false);
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
+  const isDesktop = useMediaQuery({ minWidth: 1024 });
 
   const [selectedDate] = useState(startDate);
 
@@ -43,14 +47,51 @@ const Features: React.FC = () => {
     seconds: diffInSeconds % 60,
   };
 
-  // Posisi ikon fitur
-  const iconPositions = [
-    { x: 0, y: -120 }, // [ikon1]
-    { x: -120, y: 0 }, // [ikon2]
-    { x: 120, y: 0 },  // [ikon3]
-    { x: -60, y: 120 }, // [ikon4]
-    { x: 60, y: 120 },  // [ikon5]
-  ];
+  const [iconPositions, setIconPositions] = useState<{ x: number; y: number }[]>([]);
+
+  // Update iconPositions saat ukuran layar berubah
+  useEffect(() => {
+    const getIconPositions = () => {
+      if (isMobile) {
+        return [
+          { x: 0, y: -100 }, // [ikon1]
+          { x: -100, y: 0 }, // [ikon2]
+          { x: 100, y: 0 },  // [ikon3]
+          { x: -60, y: 100 }, // [ikon4]
+          { x: 60, y: 100 },  // [ikon5]
+        ];
+      } else if (isTablet) {
+        return [
+          { x: -200, y: 80 }, // [ikon1]
+          { x: -100, y: 80 }, // [ikon2]
+          { x: 0, y: 120 },     // [ikon3]
+          { x: 100, y: 80 },  // [ikon4]
+          { x: 200, y: 80 },  // [ikon5]
+        ];
+      } else if (isDesktop) {
+        return [
+          { x: -240, y: 90 }, // [ikon1]
+          { x: -120, y: 90 }, // [ikon2]
+          { x: 0, y: 130 },     // [ikon3]
+          { x: 120, y: 90 },  // [ikon4]
+          { x: 240, y: 90 },  // [ikon5]
+        ];
+      }
+      // Default position jika tidak ada kondisi yang terpenuhi
+      return [
+        { x: 0, y: 0 }, // [ikon1]
+        { x: 0, y: 0 }, // [ikon2]
+        { x: 0, y: 0 }, // [ikon3]
+        { x: 0, y: 0 }, // [ikon4]
+        { x: 0, y: 0 }, // [ikon5]
+      ];
+    };
+
+    setIconPositions(getIconPositions());
+  }, [isMobile, isTablet, isDesktop]); // Update saat ukuran layar berubah
+
+
+
 
   return (
     <PageTransition>
@@ -125,24 +166,18 @@ const Features: React.FC = () => {
             >
               <motion.div
                 className="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mb-2 z-30"
-                animate={{ scale: [1, 1.1, 1] }} // Animasi berdenyut
-                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} // Looping smooth
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
               >
-                <img
-                  src={featuresIcons}
-                  alt="Heart Icon"
-                  className="w-40 h-40"
-                />
+                <img src={featuresIcons} alt="Heart Icon" className="w-40 h-40" />
               </motion.div>
-              <span className="text-red-600 font-medium"></span>
             </motion.div>
-
 
             {/* Ikon Fitur */}
             {features.map((feature, index) => (
               <motion.div
                 key={feature.id}
-                initial={{ scale: 0, opacity: 0, x: 0, y: 0 }}
+                initial={{ scale: 0, opacity: 0 }}
                 animate={{
                   scale: showFeatures ? 1 : 0,
                   opacity: showFeatures ? 1 : 0,
@@ -151,21 +186,14 @@ const Features: React.FC = () => {
                 }}
                 transition={{ delay: index * 0.1, type: 'spring', stiffness: 100 }}
                 onClick={() => {
-                  playClickSound(); // Panggil fungsi untuk memutar suara
+                  playClickSound();
                   navigate(feature.path);
                 }}
                 className="flex flex-col items-center cursor-pointer absolute z-30"
               >
-                <motion.div
-                  whileHover={feature.animation.hover}
-                  whileTap={feature.animation.tap}
-                >
+                <motion.div whileHover={feature.animation.hover} whileTap={feature.animation.tap}>
                   <div className="w-16 h-16 md:w-20 md:h-20 rounded-full shadow-lg flex items-center justify-center mb-2">
-                    <img
-                      src={feature.icon} // Menggunakan path gambar ikon
-                      alt={feature.title}
-                      className="w-20 h-20 md:w-30 md:h-30"
-                    />
+                    <img src={feature.icon} alt={feature.title} className="w-20 h-20 md:w-30 md:h-30" />
                   </div>
                 </motion.div>
                 <span className="text-red-600 font-medium text-sm" style={{ fontFamily: 'Lobster Two, cursive' }}>
@@ -174,6 +202,7 @@ const Features: React.FC = () => {
               </motion.div>
             ))}
           </div>
+
 
           {/* Timer Card */}
           <motion.div 
