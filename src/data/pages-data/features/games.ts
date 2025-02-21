@@ -7,7 +7,7 @@ const GamesData = {
   pageTitle: {
     text: "Mini Games", // Judul halaman
     fontFamily: "Breathing", // Tipe font judul
-    color: "text-red-600", // Warna judul
+    color: "text-white", // Warna judul
   },
 
   // Data untuk daftar game

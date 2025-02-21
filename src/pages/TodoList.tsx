@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { CheckSquare, Square } from "lucide-react"; 
 import PageTransition from "../components/PageTransition";
-import Decorations from "../components/Decorations";
 import ImageBackground from '../assets/images/paper.svg';
 import RightLineBottom from '../assets/images/heart-outline.svg';
 import LeftFrame from '../assets/images/left-frame.svg';
@@ -92,7 +91,7 @@ function TodoList() {
           />
         </div>
 
-        <Decorations />
+       
 
         {/* Gambar Garis Kiri */}
         <div className="absolute bottom-[-10vw] left-[-14vw] z-0">

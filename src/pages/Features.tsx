@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { features } from '../data/features';
+import { features } from '../data/pages-data/features';
 import PageTransition from '../components/PageTransition';
 import TimeCard from '../components/new-comp/TimeCard';
 import BgAnimImage from '../assets/images/gif/blink-blink.gif';

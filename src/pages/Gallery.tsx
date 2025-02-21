@@ -6,42 +6,15 @@ import LeftLineBottom from '../assets/images/crawl-line.svg';
 import RightLineBottom from '../assets/images/heart-outline.svg';
 import BgAnimImage from '../assets/images/gif/flower.gif';
 import clickSound from '../assets/audio/tap.mp3'; // Import file suara
-
-
+import galleryData from '../data/pages-data/features/gallery'; // Import data gallery
 
 function Gallery() {
   const navigate = useNavigate();
-  const [photos, setPhotos] = useState([
-    {
-      src: "https://storage.googleapis.com/a1aa/image/JrF4M7UR1zq-9I9hpLk5yLugsiyl6Np01h7q5M8KRkY.jpg",
-      title: "Summer"
-    },
-    {
-      src: "https://storage.googleapis.com/a1aa/image/JrF4M7UR1zq-9I9hpLk5yLugsiyl6Np01h7q5M8KRkY.jpg",
-      title: "Birthday"
-    },
-    {
-      src: "https://storage.googleapis.com/a1aa/image/JrF4M7UR1zq-9I9hpLk5yLugsiyl6Np01h7q5M8KRkY.jpg",
-      title: "Last Val"
-    },
-    {
-      src: "https://storage.googleapis.com/a1aa/image/JrF4M7UR1zq-9I9hpLk5yLugsiyl6Np01h7q5M8KRkY.jpg",
-      title: "First Date"
-    }
-  ]);
-  const [selectedPhoto, setSelectedPhoto] = useState<{ src: string; title: string } | null>(null);
-
-  // Fungsi untuk menambah gambar
-  const addPhoto = () => {
-    const newPhoto = {
-      src: "https://storage.googleapis.com/a1aa/image/JrF4M7UR1zq-9I9hpLk5yLugsiyl6Np01h7q5M8KRkY.jpg", // URL gambar baru
-      title: `Memory ${photos.length + 1}` // Judul otomatis
-    };
-    setPhotos([...photos, newPhoto]);
-  };
+  const [photos] = useState(galleryData.photos); // Menggunakan data dari gallery.ts
+  const [selectedPhoto, setSelectedPhoto] = useState<{ src: string; title: string; description: string } | null>(null);
 
   // Fungsi untuk menampilkan detail gambar
-  const openPhotoDetail = (photo: { src: string; title: string }) => {
+  const openPhotoDetail = (photo: { src: string; title: string; description: string }) => {
     setSelectedPhoto(photo);
   };
 
@@ -53,7 +26,6 @@ function Gallery() {
   const handleBack = () => {
     const audio = new Audio(clickSound);
     audio.play();
-
     navigate('/features');
   };
 
@@ -64,8 +36,7 @@ function Gallery() {
       exit={{ opacity: 0 }}
       className="relative min-h-screen bg-gradient-to-br from-pink-100 to-red-50 sm:p-6 p-6 overflow-hidden"
     >
-
-
+      {/* Konten halaman */}
       <div className="max-w-7xl mt-16 mx-auto z-40">
         {/* Tombol Kembali */}
         <button
@@ -118,10 +89,8 @@ function Gallery() {
             fontFamily: 'Breathing',
           }}
         >
-          Our Valentine Memories
+          Our Memories
         </motion.h1>
-
-
 
         {/* Grid Foto */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-6 lg:gap-16">
@@ -134,8 +103,6 @@ function Gallery() {
               className="bg-white rounded-lg shadow-lg overflow-hidden relative cursor-pointer"
               onClick={() => openPhotoDetail(photo)}
             >
-
-
               {/* Ikon Pin */}
               <div className="absolute top-2 left-1/2 transform -translate-x-1/2 -translate-y-0 z-10">
                 <img src={pinIcon} alt="Pin Icon" className="w-8 h-8" />
@@ -156,19 +123,6 @@ function Gallery() {
               </div>
             </motion.div>
           ))}
-
-          {/* Tombol Add (+) */}
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: photos.length * 0.1 }}
-            className="bg-white rounded-lg shadow-lg overflow-hidden relative flex items-center justify-center cursor-pointer col-span-2 sm:col-span-2 md:col-span-1 lg:col-span-1"
-            onClick={addPhoto}
-          >
-            <div className="w-full h-48 flex items-center justify-center">
-              <span className="text-6xl text-red-500">+</span>
-            </div>
-          </motion.div>
         </div>
       </div>
 
@@ -207,7 +161,7 @@ function Gallery() {
 
                 {/* Pesan Singkat */}
                 <p className="text-sm md:text-base text-gray-700 mb-4 md:mb-6">
-                  Ini adalah pesan singkat yang menjelaskan tentang gambar ini. Anda bisa menambahkan deskripsi atau cerita singkat di sini.
+                  {selectedPhoto.description}
                 </p>
 
                 {/* Tombol Close */}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import HTMLFlipBook from "react-pageflip";
-import { mainGiftData } from "../data/pages-data/main-gift/main-gift"; // Impor data dari file terpisah
+import { mainGiftData } from "../data/pages-data/features/main-gift"; // Impor data dari file terpisah
 import VideoPlayer from "../components/new-comp/VideoPlayer"; // Impor komponen VideoPlayer
 import { useNavigate } from "react-router-dom"; // Impor useNavigate untuk navigasi
 import { MdCardGiftcard } from "react-icons/md"; // Import ikon hadiah

@@ -1,9 +1,9 @@
-import cameraIcon from '../assets/images/icons/galery.svg';
-// import musicIcon from '../assets/images/icons/music.svg';
-import checkSquareIcon from '../assets/images/icons/todolist.svg';
-import gameIcon from '../assets/images/icons/game.svg';
-import mailIcon from '../assets/images/icons/loveletter.svg';
-import mainGift from '../assets/images/icons/main-gift.svg';
+import cameraIcon from '../../assets/images/icons/galery.svg';
+// import musicIcon from '../../assets/images/icons/music.svg';
+import checkSquareIcon from '../../assets/images/icons/todolist.svg';
+import gameIcon from '../../assets/images/icons/game.svg';
+import mailIcon from '../../assets/images/icons/loveletter.svg';
+import mainGift from '../../assets/images/icons/main-gift.svg';
 
 
 
