@@ -13,7 +13,6 @@ import Games from './pages/Games';
 import DateInput2 from './pages/DateInput2';
 import DaysOfLove from './pages/DaysOfLove';
 import Loading from './components/loading/Loading1';
-import Fliping from './pages/Fliping';
 import Quiz from './pages/games/Quiz';
 import TekaTeki from './pages/games/TekaTeki';
 import MusicBackground from './components/new-comp/MusicBackground';
@@ -48,7 +47,6 @@ function AnimatedRoutes() {
           <Route path="/love-letter" element={<LoveLetter />} />
           <Route path="/closing" element={<Closing />} />
           <Route path="/games" element={<Games />} />
-          <Route path="/fliping" element={<Fliping />} />
           <Route path="/main-gift" element={<MainGift />} />
 
           <Route path="/games/tts" element={<TekaTeki />} />
